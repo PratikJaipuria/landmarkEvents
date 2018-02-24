@@ -1,3 +1,8 @@
-# landmarkEvents
+# landmarkEvents Team 
 
-## [Design](https://github.com/PratikJaipuria/landmarkEvents/wiki)
+## Members
+* Pratik Jaipuria
+* Varun Nandu
+* Bhushan Mohite
+
+## [Design Wiki](https://github.com/PratikJaipuria/landmarkEvents/wiki)
