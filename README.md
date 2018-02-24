@@ -1,4 +1,4 @@
-# landmarkEvents Team 
+# Team landmarkEvents  
 
 ## Members
 * Pratik Jaipuria
