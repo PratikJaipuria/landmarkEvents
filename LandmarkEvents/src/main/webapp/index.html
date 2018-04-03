@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="LandmarkApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Landmark Events</title>
+    <meta name="author" content="Three Musketeers">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js" type="text/javascript"></script>
+
+    <script src="app.js" type="text/javascript" ></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular-route.js" type="text/javascript"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+
+    <script src="config.js"></script>
+    <script type="text/javascript" src="http://api.eventful.com/js/api"></script>
+
+
+    <!--Services-->
+
+    <script src="services/MainService.js" type="text/javascript"></script>
+
+
+    <!--Controllers-->
+    <script src="views/Controllers/main.contoller.js" type="text/javascript"></script>
+
+
+
+
+
+
+
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid col-xs-12 col-md-12">
+        <div class="navbar-text pull-left">
+
+        </div>
+        <div ng-show="model.logged" class="navbar-text pull-right">
+            <a href="" ng-click="model.logout()">
+                <i class="fa fa-sign-out logout-gly" aria-hidden="true">
+                    <label class="logout-label">Logout</label></i>
+            </a>
+        </div>
+        <div ng-hide="model.logged" class="navbar-text pull-right">
+            <a href="" ng-click="model.routeLogin()">
+                <i class="fa fa-sign-in logout-gly" aria-hidden="true">
+                    <label class="logout-label">Login</label></i>
+            </a>
+        </div>
+        <div ng-show="model.showShows" class="navbar-text pull-right " style="padding-right: 10px">
+            <a href="" ng-click="model.routeToShows()" class="admin-label">
+
+                <span class="glyphicon glyphicon-facetime-video" aria-hidden="true">
+                    <!--<label class="admin-label">Shows</label>-->
+                </span>
+                <span>Shows</span>
+            </a>
+        </div>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#"><p class="brand-name">Landmark Events</p></a>
+            <div ng-if="model.showRefresh" class="navbar-header" style="padding-top: 10px">
+                <i class=" fa fa-refresh fa-spin fa-2x fa-fw" style="color: whitesmoke;"></i>
+                <label class="hidden-xs" style="color: whitesmoke;">Loading movies...</label>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div style="padding-top: 70px" class="ng-view"></div>
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid col-md-12 col-xs-12">
+        <div class="navbar-text pull-left">
+            <a style="color:whitesmoke;">&copy Three Musketeers</a>
+            <a class="hidden-xs hidden-md" href="" style="color:whitesmoke;">
+                &nbsp; | &nbsp;
+                <span class="admin-label" style="font-family: 'Pacifico', cursive">
+                    LandmarkEvents
+                </span>
+                Powered By Three Musketeers
+            </a>
+        </div>
+
+        <div class="navbar-text pull-right ">
+            <a ng-click="model.routeToProfile()" style="cursor: pointer">
+                <span class="glyphicon glyphicon-user profile-gly"></span>
+            </a>
+        </div>
+        <div ng-show="model.showAdmin" class="navbar-text col-xs-pull-2 pull-right" style="padding-right: 10px">
+            <a href="" ng-click="model.routeToAdmin()" class="admin-label">
+                <i class="fa fa-user-secret admin-label" aria-hidden="true">
+                    <label class="admin-label">Admin</label></i>
+            </a>
+        </div>
+    </div>
+</nav>
+</body>
+</html>
+
