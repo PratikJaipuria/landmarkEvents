@@ -20,7 +20,8 @@
         // var videoUrl = "https://api.themoviedb.org/3/movie/MOVIEID/videos?api_key=a1eeabc6332dbb0d0d874a6a8d6a6a29&language=en";
         // var youtubeEmbedUrl = "https://www.youtube.com/embed/KEY";
         // var similarUrl = "https://api.themoviedb.org/3/movie/MOVIEID/similar?api_key=a1eeabc6332dbb0d0d874a6a8d6a6a29&language=en";
-        var upcomingUrl = "http://eventful.com/json/events?app_key=4WfzV49BJWfGstmT&q=music&l=San+Diego";
+        // var upcomingUrl = "http://eventful.com/json/events?app_key=4WfzV49BJWfGstmT&q=music&l=San+Diego";
+        var upcomingUrl = "http://api.eventful.com/json/events/search?app_key=4WfzV49BJWfGstmT&keywords=music&location=San+Diego";
         // var searchUrl = "https://api.themoviedb.org/3/search/movie?api_key=a1eeabc6332dbb0d0d874a6a8d6a6a29&language=en&query=TITLE&page=PAGE";
         // var detailsUrl = "https://api.themoviedb.org/3/movie/ID?api_key=a1eeabc6332dbb0d0d874a6a8d6a6a29&language=en";
         // var imageUrl = "https://image.tmdb.org/t/p/original/";
