@@ -11,7 +11,7 @@
         $httpProvider.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';
 
         $routeProvider
-            .when("/",{
+            .when("/cool",{
                 templateUrl:"views/templates/main.view.client.html",
                 controller: 'MainController',
                 controllerAs: 'model'
