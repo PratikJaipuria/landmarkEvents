@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,12 +27,12 @@ public class UserService {
 				String username,
 			@RequestParam(name="password", required=false)
 				String password) {
-		if(username != null && password != null) {
-			return (List<User>) userRepository.findUserByCredentials(username, password);
-		}
-		else if(username != null) {
-			return (List<User>) userRepository.findUserByUsername(username);
-		}
+//		if(username != null && password != null) {
+//			return (List<User>) userRepository.findUserByCredentials(username, password);
+//		}
+//		else if(username != null) {
+//			return (List<User>) userRepository.findUserByUsername(username);
+//		}
 		return (List<User>) userRepository.findAll();
 	}
 	
@@ -44,6 +45,24 @@ public class UserService {
 	@DeleteMapping("/api/user/{userId}")
 	public void deleteUser(@PathVariable("userId") int id) {
 		userRepository.delete(id);
+		
+	}	
+	
+	@PutMapping("/api/user/{userId}")
+	public User updateUser(@PathVariable("userId") int id,
+			@RequestBody User user) {
+		User uN = userRepository.findOne(id);
+		
+		if(user.getFirstName()!=null)
+			uN.setFirstName(user.getFirstName());
+		if(user.getLastName()!=null)
+			uN.setLastName(user.getLastName());
+		if(user.getUserName()!=null)
+			uN.setUserName(user.getUserName());
+		if(user.getPassword()!=null)
+			uN.setPassword(user.getPassword());
+		
+		return userRepository.save(uN);
 		
 	}
 	
