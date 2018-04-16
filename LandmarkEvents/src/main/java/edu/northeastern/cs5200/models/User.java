@@ -1,7 +1,5 @@
 package edu.northeastern.cs5200.models;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.*;
 
 

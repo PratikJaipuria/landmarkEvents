@@ -2,13 +2,9 @@ package edu.northeastern.cs5200.models;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Event {
@@ -17,8 +13,38 @@ public class Event {
     private int id;
 	
 	@ManyToMany(cascade=CascadeType.ALL)
-	@JoinTable(name="Event2Host")
+	@JsonIgnore
+	@JoinTable(name="Event2Host", joinColumns=@JoinColumn(name="EventId", referencedColumnName="ID"), 
+	inverseJoinColumns=@JoinColumn(name="HostId", referencedColumnName="ID"))
 	private List<Host> hosts = null;
+	
+	@ManyToMany(cascade=CascadeType.ALL)
+	@JsonIgnore
+	@JoinTable(name="Ticket", joinColumns=@JoinColumn(name="EventId", referencedColumnName="ID"), 
+			inverseJoinColumns=@JoinColumn(name="EventeeId", referencedColumnName="ID"))
+	private List<Eventee> eventess = null;
+	
+	@ManyToMany(cascade=CascadeType.ALL)
+	@JsonIgnore
+	@JoinTable(name="Event2Performer", joinColumns=@JoinColumn(name="EventId", referencedColumnName="ID"), 
+			inverseJoinColumns=@JoinColumn(name="PerformerId", referencedColumnName="ID"))
+	private List<Performer> performers = null;
+
+	public List<Eventee> getEventess() {
+		return eventess;
+	}
+
+	public void setEventess(List<Eventee> eventees) {
+		this.eventess = eventees;
+	}
+
+	public List<Performer> getPerformers() {
+		return performers;
+	}
+
+	public void setPerformers(List<Performer> performers) {
+		this.performers = performers;
+	}
 
 	public int getId() {
 		return id;
