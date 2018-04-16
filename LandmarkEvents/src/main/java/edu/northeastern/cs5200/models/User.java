@@ -1,14 +1,16 @@
 package edu.northeastern.cs5200.models;
 
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.GenerationType;
+import javax.persistence.*;
+
 
 @Entity
+@Inheritance(strategy=InheritanceType.JOINED)
 public class User {
 	
 	@Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
 	private String firstName;
 	private String lastName;
