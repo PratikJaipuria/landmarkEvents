@@ -21,10 +21,6 @@ public class Host extends User {
 	public void setEventsHosted(List<Event> eventsHosted) {
 		this.eventsHosted = eventsHosted;
 	}
-
-	public Host() {
-		// TODO Auto-generated constructor stub
-	}
 	
 	
 }

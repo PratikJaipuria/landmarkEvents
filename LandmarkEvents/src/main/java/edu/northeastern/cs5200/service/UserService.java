@@ -21,33 +21,39 @@ public class UserService {
 	@Autowired
 	UserRepository userRepository;
 	
+	//CREATE NEW USER
+	@PostMapping("/api/user")
+	public User createUser(
+			@RequestBody User user) {
+		return userRepository.save(user);
+	}
+	
+	//FIND USER BY USERNAME OR CREDENTIALS IF PROVIDED
+	//ELSE
+	//FIND ALL USERS
 	@GetMapping("/api/user")
 	public List<User> findAllUsers(
 			@RequestParam(name="username", required=false)
 				String username,
 			@RequestParam(name="password", required=false)
 				String password) {
-//		if(username != null && password != null) {
-//			return (List<User>) userRepository.findUserByCredentials(username, password);
-//		}
-//		else if(username != null) {
-//			return (List<User>) userRepository.findUserByUsername(username);
-//		}
+		if(username != null && password != null) {
+			return (List<User>) userRepository.findUserByCredentials(username, password);
+		}
+		else if(username != null) {
+			return (List<User>) userRepository.findUserByUsername(username);
+		}
 		return (List<User>) userRepository.findAll();
 	}
 	
+	//FIND USER BY USER ID
 	@GetMapping("/api/user/{userId}")
 	public User findUserById(
 			@PathVariable("userId") int uid) {
 		return userRepository.findOne(uid);
 	}
 	
-	@DeleteMapping("/api/user/{userId}")
-	public void deleteUser(@PathVariable("userId") int id) {
-		userRepository.delete(id);
-		
-	}	
-	
+	//UPDATE USER
 	@PutMapping("/api/user/{userId}")
 	public User updateUser(@PathVariable("userId") int id,
 			@RequestBody User user) {
@@ -65,11 +71,12 @@ public class UserService {
 		return userRepository.save(uN);
 		
 	}
-	
-	@PostMapping("/api/user")
-	public User createUser(
-			@RequestBody User user) {
-		return userRepository.save(user);
-	}
+		
+	//DELETE USER
+	@DeleteMapping("/api/user/{userId}")
+	public void deleteUser(@PathVariable("userId") int id) {
+		userRepository.delete(id);
+		
+	}	
 	
 }
