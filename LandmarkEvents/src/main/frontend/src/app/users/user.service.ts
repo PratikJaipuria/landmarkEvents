@@ -18,4 +18,11 @@ export class UserService{
   saveUser(user : User){
       return this.http.post('/api/host',user).map(response => response.json());
   }
+
+  updateUser(user : User , id : number){
+    return this.http.put('/api/host/' + id , user).map(response => response.json());
+  }
+  deleteUser(user : User){
+    return this.http.delete('/api/host/' + user.id);//.map(response => response.json());
+  }
 }
