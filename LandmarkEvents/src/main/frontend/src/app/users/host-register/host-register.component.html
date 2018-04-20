@@ -1,0 +1,65 @@
+<h3>GET USERS</h3>
+<li *ngFor="let user of users" class="list-group-item">
+<span>{{user.firstName}} {{user.lastName}}</span>
+</li>
+
+<div class="container">
+  <h1>Register</h1>
+
+
+  <div class="form-group">
+    <input  [(ngModel)]="userName"
+            type="text"
+            class="form-control"
+            placeholder="username"/>
+  </div>
+
+  <div class="form-group">
+    <input [(ngModel)]="password"
+           type="password"
+           class="form-control"
+           placeholder="password"/>
+  </div>
+
+  <!--<div class="form-group">-->
+  <!--<input ngModel="newUser.password2"-->
+  <!--type="password"-->
+  <!--class="form-control"-->
+  <!--placeholder="verify password"/>-->
+  <!--</div>-->
+
+  <div class="form-group">
+
+
+    <!--<input [(ngModel)]="newUser.email"-->
+    <!--type="email"-->
+    <!--class="form-control"-->
+    <!--id="email"-->
+    <!--placeholder="abc@example.com">-->
+    <!--</div>-->
+
+    <div class="form-group">
+
+      <input [(ngModel)]="firstName"
+             type="text"
+             class="form-control"
+             id="first-name"
+             placeholder="First Name">
+    </div>
+
+    <div class="form-group">
+
+      <input [(ngModel)]="lastName"
+             type="text" class="form-control"
+             id="last-name"
+             placeholder="Last Name">
+    </div>
+
+
+    <a class="btn btn-primary btn-block"
+       (click)="createUser()">Register</a>
+
+    <a class="btn btn-danger  btn-block"
+       href="#">Cancel</a>
+  </div>
+</div>

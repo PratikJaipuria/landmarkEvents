@@ -11,10 +11,16 @@
         $httpProvider.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';
 
         $routeProvider
-            .when("/cool",{
+            .when("/api/cool",{
                 templateUrl:"views/templates/main.view.client.html",
                 controller: 'MainController',
                 controllerAs: 'model'
+            })
+            
+            .when("/register",{
+                templateUrl: "views/user/templates/register.view.client.html",
+                controller: "registerController",
+                controllerAs: "model"
             });
 //            .when("/main/:sid/:aid", {
 //                templateUrl:'views/templates/dataUpload.view.client.html',
