@@ -23,7 +23,7 @@ public class Host extends User {
 	}
 
 	public void setEventsHosted(List<Event> eventsHosted) {
-		this.eventsHosted = eventsHosted; // need to check??
+		this.eventsHosted = eventsHosted;// need to check??
 	}
 
 	public String getCompanyName() {
