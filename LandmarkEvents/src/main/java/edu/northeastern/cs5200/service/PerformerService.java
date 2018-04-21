@@ -62,12 +62,12 @@ public class PerformerService {
 //	 * @param pid
 //	 * @return
 //	 */
-//	@GetMapping("/api/performer/{performerId}/followers")
-//	public List<Eventee> findfollowersByPerformer(
-//			@PathVariable("performerId") int pid) {
-//		Performer pR = performerRepository.findOne(pid);
-//		return (List<Eventee>)performerRepository.findfollowersById(pR);
-//	}
+	@GetMapping("/api/performer/{performerId}/followers")
+	public List<Eventee> findfollowersByPerformer(
+			@PathVariable("performerId") int pid) {
+		Performer pR = performerRepository.findOne(pid);
+		return pR.getEventees();
+	}
 	
 	//UPDATE A PERFORMER
 	@PutMapping("/api/performer/{performerId}")
