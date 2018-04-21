@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import edu.northeastern.cs5200.models.Eventee;
 import edu.northeastern.cs5200.models.Performer;
 import edu.northeastern.cs5200.repositories.PerformerRepository;
 
@@ -54,6 +55,19 @@ public class PerformerService {
 			@PathVariable("performerId") int pid) {
 		return performerRepository.findOne(pid);
 	}
+	
+//	List of Users following a performer
+//	/** 
+//	 * 
+//	 * @param pid
+//	 * @return
+//	 */
+//	@GetMapping("/api/performer/{performerId}/followers")
+//	public List<Eventee> findfollowersByPerformer(
+//			@PathVariable("performerId") int pid) {
+//		Performer pR = performerRepository.findOne(pid);
+//		return (List<Eventee>)performerRepository.findfollowersById(pR);
+//	}
 	
 	//UPDATE A PERFORMER
 	@PutMapping("/api/performer/{performerId}")

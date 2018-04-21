@@ -1,5 +1,6 @@
 package edu.northeastern.cs5200.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -28,6 +29,8 @@ public class Performer extends User {
 	}
 
 	public List<Event> getEvents() {
+		if(events==null)
+			return new ArrayList<Event>();	
 		return events;
 	}
 
@@ -39,6 +42,8 @@ public class Performer extends User {
 	}
 
 	public List<Eventee> getEventees() {
+		if(eventees==null)
+			return new ArrayList<Eventee>();
 		return eventees;
 	}
 
