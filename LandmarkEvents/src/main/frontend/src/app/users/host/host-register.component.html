@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>Register</h1>
+  <h4>Host</h4>
 
 
   <div class="form-group">
@@ -49,8 +49,6 @@
              id="last-name"
              placeholder="Last Name">
     </div>
-
-
     <a class="btn btn-primary btn-block"
        (click)="createUser()">Register</a>
 
@@ -59,14 +57,13 @@
   </div>
 </div>
 
-
-<h4>List Users</h4>
+<div class="container">
+<h4>Users List</h4>
 <li *ngFor="let user of users" class="list-group-item">
 <span>{{user.firstName}} {{user.lastName}}</span>
   <a><i (click)="changeUser(user)" class="fas fa-cog"></i></a>
   <a><i (click)="deleteUser(user)" class="fas fa-trash-alt"></i></a>
-  <!--<a href="#" class="align-items-right">q<span class=""></span></a>-->
-  <!--<a (click)="updatePage()"><span class="glyphicon glyphicon-ok" ></span></a>-->
 </li>
+</div>
 
 

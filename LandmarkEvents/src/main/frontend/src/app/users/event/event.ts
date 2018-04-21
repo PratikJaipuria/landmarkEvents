@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HostAddListComponent } from './host-add-list.component';
+import { HostAddListComponent } from './event.component';
 
 describe('HostAddListComponent', () => {
   let component: HostAddListComponent;

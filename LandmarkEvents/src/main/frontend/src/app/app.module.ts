@@ -4,12 +4,12 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { UsersComponent } from './users/users.component';
-import { HostRegisterComponent } from './users/host-register/host-register.component';
+import { HostRegisterComponent } from './users/host/host-register.component';
 import {UserService} from "./users/user.service";
 import {FormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
-import { HostAddListComponent } from './users/host-add-list/host-add-list.component';
-
+import { HostAddListComponent } from './users/event/event.component';
+import {routing} from "./app.routing";
 
 @NgModule({
   declarations: [
@@ -21,7 +21,8 @@ import { HostAddListComponent } from './users/host-add-list/host-add-list.compon
   imports: [
     BrowserModule,
     HttpModule,
-    FormsModule
+    FormsModule,
+    routing
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

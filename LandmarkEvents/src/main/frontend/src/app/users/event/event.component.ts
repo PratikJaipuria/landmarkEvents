@@ -3,9 +3,9 @@ import {UserService} from "../user.service";
 import {User} from "../user.model";
 
 @Component({
-  selector: 'app-host-add-list',
-  templateUrl: './host-add-list.component.html',
-  styleUrls: ['./host-add-list.component.css']
+  selector: 'app-event',
+  templateUrl: './event.html',
+  styleUrls: ['./event.css']
 })
 export class HostAddListComponent implements OnInit {
   user: User;
