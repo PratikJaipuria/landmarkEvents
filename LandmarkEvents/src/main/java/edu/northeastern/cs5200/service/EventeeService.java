@@ -1,5 +1,6 @@
 package edu.northeastern.cs5200.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.northeastern.cs5200.models.Eventee;
+import edu.northeastern.cs5200.models.Performer;
 import edu.northeastern.cs5200.repositories.EventeeRepository;
 
 @RestController
@@ -28,6 +30,7 @@ public class EventeeService {
 		
 		return eventeeRepository.save(eventee);
 	}
+	
 	
 	//FIND AN EVENTEE WITH USERNAME OR CREDENTIAL IF PROVIDED
 	//ELSE
@@ -72,6 +75,23 @@ public class EventeeService {
 		return eventeeRepository.save(e);
 		
 	}
+
+	/**
+	 * 
+	 * @param eid
+	 * @return
+	 */
+	@PutMapping("/api/eventee/{eid}/performer")
+	public Eventee followPerformer(@PathVariable("eid") int eid,
+			@RequestBody Performer performer) {
+		
+		Eventee eventee = eventeeRepository.findOne(eid);
+		List<Performer> entertainers = eventee.getEntertainers();
+		entertainers.add(performer);
+		eventee.setEntertainers(entertainers);
+		return eventeeRepository.save(eventee);
+		}
+	
 
 	//DELETE AN EVENTEE
 	@DeleteMapping("/api/eventee/{eventeeId}")

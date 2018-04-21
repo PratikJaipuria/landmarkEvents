@@ -1,5 +1,6 @@
 package edu.northeastern.cs5200.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -28,7 +29,11 @@ public class Eventee extends User {
 	}
 
 	public List<Performer> getEntertainers() {
+		
+		if(entertainers==null)
+			return new ArrayList<Performer>();
 		return entertainers;
+		
 	}
 
 	public void setEntertainers(List<Performer> entertainers) {
