@@ -11,7 +11,7 @@ public class Host extends User {
 	
 	private String companyName;
 	
-	@ManyToMany(mappedBy="hosts", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="host", cascade=CascadeType.ALL)
 	@JsonIgnore
 	private List<Event> eventsHosted = null;
 
@@ -31,17 +31,11 @@ public class Host extends User {
 		this.companyName = companyName;
 	}
 
-	
-
-	public Host(String companyName) {
-		super();
-		this.companyName = companyName;
-	}
 
 	public Host() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
+
 	
 	
 }

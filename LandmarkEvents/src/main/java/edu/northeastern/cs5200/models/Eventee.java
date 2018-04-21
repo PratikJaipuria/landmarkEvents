@@ -9,33 +9,40 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Eventee extends User {
 	
-	@ManyToMany(mappedBy="eventess", cascade=CascadeType.ALL)
-	@JsonIgnore
-	private List<Event> eventsVisited= null;
+	@OneToOne
+	private Ticket ticket;
 	
-	@ManyToOne
+	@ManyToMany(cascade=CascadeType.ALL)
 	@JsonIgnore
-	private Performer perform;
+	@JoinTable(name="Performer2Eventee",joinColumns=@JoinColumn(name="EventeeId", referencedColumnName="ID"), 
+			inverseJoinColumns=@JoinColumn(name="PerformerId", referencedColumnName="ID"))
+	
+	private List<Performer> entertainers;
 
-	public List<Event> getEventsVisited() {
-		return eventsVisited;
+	public Ticket getTicket() {
+		return ticket;
 	}
 
-	public void setEventsVisited(List<Event> eventsVisited) {
-		this.eventsVisited = eventsVisited;
+	public void setTicket(Ticket ticket) {
+		this.ticket = ticket;
 	}
 
-	public Performer getPerform() {
-		return perform;
+	public List<Performer> getEntertainers() {
+		return entertainers;
 	}
 
-	public void setPerform(Performer perform) {
-		this.perform = perform;
+	public void setEntertainers(List<Performer> entertainers) {
+		this.entertainers = entertainers;
+		for(Performer p: entertainers) {
+			p.getEventees().add(this);
+		}
 	}
 
 	public Eventee() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
+
+
 	
 	
 

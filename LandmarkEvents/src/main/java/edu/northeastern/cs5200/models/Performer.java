@@ -9,20 +9,33 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Performer extends User {
 	
-	@ManyToMany(mappedBy="performers", cascade=CascadeType.ALL)
-	@JsonIgnore
-	private List<Event> eventsPerformed = null;
+	private String bio;
 	
-	@OneToMany(mappedBy="perform", cascade=CascadeType.ALL)
+	@ManyToMany(mappedBy="performers",cascade=CascadeType.ALL)
+	@JsonIgnore
+	private List<Event> events = null;
+	
+	@ManyToMany(mappedBy="entertainers", cascade=CascadeType.ALL)
 	@JsonIgnore
 	private List<Eventee> eventees = null;
 
-	public List<Event> getEventsPerformed() {
-		return eventsPerformed;
+	public String getBio() {
+		return bio;
 	}
 
-	public void setEventsPerformed(List<Event> eventsPerformed) {
-		this.eventsPerformed = eventsPerformed;
+	public void setBio(String bio) {
+		this.bio = bio;
+	}
+
+	public List<Event> getEvents() {
+		return events;
+	}
+
+	public void setEvents(List<Event> events) {
+		this.events = events;
+		for(Event e: events) {
+			e.getPerformers().add(this);
+		}
 	}
 
 	public List<Eventee> getEventees() {
@@ -31,11 +44,18 @@ public class Performer extends User {
 
 	public void setEventees(List<Eventee> eventees) {
 		this.eventees = eventees;
+		for(Eventee ee: eventees) {
+			ee.getEntertainers().add(this);
+		}
 	}
 
 	public Performer() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
+	
+	
+
+	
 
 	
 }
