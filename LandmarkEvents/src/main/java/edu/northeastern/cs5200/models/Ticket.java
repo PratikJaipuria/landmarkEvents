@@ -14,7 +14,6 @@ public class Ticket {
 	@OneToOne
 	private Eventee eventee;
 	
-	
 	private double price;
 	
 	@OneToOne
