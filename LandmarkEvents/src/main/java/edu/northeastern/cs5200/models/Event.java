@@ -1,5 +1,6 @@
 package edu.northeastern.cs5200.models;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
@@ -12,39 +13,35 @@ public class Event {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
 	
-	@ManyToMany(cascade=CascadeType.ALL)
+	@ManyToOne
 	@JsonIgnore
-	@JoinTable(name="Event2Host", joinColumns=@JoinColumn(name="EventId", referencedColumnName="ID"), 
-	inverseJoinColumns=@JoinColumn(name="HostId", referencedColumnName="ID"))
-	private List<Host> hosts = null;
+	private Host host = null;
+	
+	@OneToMany(cascade=CascadeType.ALL)
+	@JsonIgnore
+	private List<Ticket> ticket = null;
+	
 	
 	@ManyToMany(cascade=CascadeType.ALL)
 	@JsonIgnore
-	@JoinTable(name="Ticket", joinColumns=@JoinColumn(name="EventId", referencedColumnName="ID"), 
-			inverseJoinColumns=@JoinColumn(name="EventeeId", referencedColumnName="ID"))
-	private List<Eventee> eventess = null;
-	
-	@ManyToMany(cascade=CascadeType.ALL)
-	@JsonIgnore
-	@JoinTable(name="Event2Performer", joinColumns=@JoinColumn(name="EventId", referencedColumnName="ID"), 
+	@JoinTable(name="Event2Performer",joinColumns=@JoinColumn(name="EventId", referencedColumnName="ID"), 
 			inverseJoinColumns=@JoinColumn(name="PerformerId", referencedColumnName="ID"))
 	private List<Performer> performers = null;
-
-	public List<Eventee> getEventess() {
-		return eventess;
-	}
-
-	public void setEventess(List<Eventee> eventees) {
-		this.eventess = eventees;
-	}
-
-	public List<Performer> getPerformers() {
-		return performers;
-	}
-
-	public void setPerformers(List<Performer> performers) {
-		this.performers = performers;
-	}
+	
+	@OneToOne
+	private Venue venue;
+	
+	private String url;
+	
+	private String cityName;
+	
+	private Date startTime;
+	
+	private String title;
+	
+	private boolean allDay;
+	
+	private int hrs;
 
 	public int getId() {
 		return id;
@@ -54,17 +51,96 @@ public class Event {
 		this.id = id;
 	}
 
-	public List<Host> getHosts() {
-		return hosts;
+	public Host getHost() {
+		return host;
 	}
 
-	public void setHosts(List<Host> hosts) {
-		this.hosts = hosts;
+	public void setHost(Host host) {
+		this.host = host;
+	}
+
+	public List<Ticket> getTicket() {
+		return ticket;
+	}
+
+	public void setTicket(List<Ticket> ticket) {
+		this.ticket = ticket;
+	}
+
+
+	public List<Performer> getPerformers() {
+		return performers;
+	}
+
+	public void setPerformers(List<Performer> performers) {
+		this.performers = performers;
+		for(Performer p: performers) {
+			p.getEvents().add(this);
+		}
+	}
+
+	public Venue getVenue() {
+		return venue;
+	}
+
+	public void setVenue(Venue venue) {
+		this.venue = venue;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public String getCityName() {
+		return cityName;
+	}
+
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
+	}
+
+	public Date getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(Date startTime) {
+		this.startTime = startTime;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public boolean isAllDay() {
+		return allDay;
+	}
+
+	public void setAllDay(boolean allDay) {
+		this.allDay = allDay;
+	}
+
+	public int getHrs() {
+		return hrs;
+	}
+
+	public void setHrs(int hrs) {
+		this.hrs = hrs;
 	}
 
 	public Event() {
-		// TODO Auto-generated constructor stub
+		
 	}
+	
+	
+
 	
 	
 
