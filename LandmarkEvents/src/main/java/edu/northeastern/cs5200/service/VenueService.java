@@ -1,5 +1,7 @@
 package edu.northeastern.cs5200.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,7 +11,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import edu.northeastern.cs5200.models.Event;
 import edu.northeastern.cs5200.models.Venue;
+import edu.northeastern.cs5200.repositories.EventRepository;
 import edu.northeastern.cs5200.repositories.VenueRepository;
 
 @RestController
@@ -18,6 +22,9 @@ public class VenueService {
 	@Autowired
 	VenueRepository venueRepository;
 	
+	@Autowired
+	EventRepository eventRepository;
+	
 	//CREATE NEW VENUE
 	@PostMapping("/api/venue")
 	public Venue createVenue(
@@ -25,13 +32,32 @@ public class VenueService {
 		return venueRepository.save(venue);
 	}
 	
-	//FIND EVENTS AT A VENUE   //need to check??
+//	/**
+//	 * 
+//	 * @param venue
+//	 * @param eventId
+//	 * @return
+//	 */
+//	@PostMapping("/api/event/{eventId}/venue")
+//	public Venue addVenueToEvent(
+//			@RequestBody Venue venue, @PathVariable("eventId") int eventId) {
+//		Event e = eventRepository.findOne(eventId);
+//		e.setVenue(venue);
+//		eventRepository.save(e);
+//		venue.setEvents(e);
+//		return venueRepository.save(venue);
+//	}
 	
 	//FIND VENUE BY VENUE ID
 	@GetMapping("/api/venue/{venueId}")
 	public Venue findVenueById(
 			@PathVariable("venueId") int vid) {
 		return venueRepository.findOne(vid);
+	}
+	
+	@GetMapping("/api/venue")
+	public List<Venue> findAllVenue() {
+		return (List<Venue>) venueRepository.findAll();
 	}
 	
 	//UPDATE VENUE
@@ -44,8 +70,6 @@ public class VenueService {
 			ven.setAddress(venue.getAddress());
 		if(venue.getName() != null)
 			ven.setAddress(venue.getAddress());
-		if(venue.getEvent() != null)
-			ven.setEvent(venue.getEvent());
 		if(venue.getUrl() != null)
 			ven.setUrl(venue.getUrl());
 		

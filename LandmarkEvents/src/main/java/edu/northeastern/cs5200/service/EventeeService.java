@@ -57,6 +57,7 @@ public class EventeeService {
 		return eventeeRepository.findOne(eid);
 	}
 	
+	
 	//UPDATE AN EVENTEE
 	@PutMapping("/api/eventee/{eventeeId}")
 	public Eventee updateEventee(@PathVariable("eventeeId") int eid,
@@ -92,7 +93,17 @@ public class EventeeService {
 		return eventeeRepository.save(eventee);
 		}
 	
-
+	
+	//FIND ALL Performers BY Eventee ID
+		@GetMapping("/api/eventee/{eventeeId}/performer")
+		public List<Performer> findPerformerById(
+				@PathVariable("eventeeId") int eid) {
+			Eventee eventee = eventeeRepository.findOne(eid);
+			List<Performer> entertainers = eventee.getEntertainers();
+			
+			return entertainers;
+		}
+		
 	//DELETE AN EVENTEE
 	@DeleteMapping("/api/eventee/{eventeeId}")
 	public void deleteEventee(@PathVariable("eventeeId") int eid) {

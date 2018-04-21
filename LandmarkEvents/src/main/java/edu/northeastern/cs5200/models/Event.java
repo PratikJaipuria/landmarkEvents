@@ -1,5 +1,6 @@
 package edu.northeastern.cs5200.models;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -28,12 +29,15 @@ public class Event {
 			inverseJoinColumns=@JoinColumn(name="PerformerId", referencedColumnName="ID"))
 	private List<Performer> performers = null;
 	
-	@OneToOne
-	private Venue venue;
+	@ManyToOne
+	@JsonIgnore
+	private Venue venue = null;
 	
 	private String url;
 	
 	private String cityName;
+	
+	private String category;
 	
 	private Date startTime;
 	
@@ -55,6 +59,14 @@ public class Event {
 		return host;
 	}
 
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
 	public void setHost(Host host) {
 		this.host = host;
 	}
@@ -69,6 +81,8 @@ public class Event {
 
 
 	public List<Performer> getPerformers() {
+		if(performers == null)
+			return new ArrayList<Performer>();
 		return performers;
 	}
 
