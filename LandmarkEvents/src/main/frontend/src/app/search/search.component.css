@@ -1,0 +1,173 @@
+.fix-top{
+  margin-top:-10px;
+}
+.navbar-default {
+  background-color: #854541;
+  font-family: 'Lobster', Georgia, Times, serif;
+  margin-top: 0;
+}
+
+.navbar-brand{
+  color: #F5F5E6;
+}
+
+html, body {
+  height: 100%;
+}
+.top-push{
+
+  margin-top: 25px;
+}
+
+
+.divider{
+  height:auto;
+  padding: 10px;
+  background-color: #1E90FF;
+  margin: 10px;
+  border: 0;
+}
+
+.page-header{
+  color: #CDA267;
+  font-family: "Courier New";
+  font-size: 34px;
+  font-weight: 300;
+  line-height: 40px;
+}
+
+.row{
+  background-color: #F5F5E6;
+}
+.complete-height{
+  position: fixed;
+  overflow: auto;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  top: 60px;
+}
+.btn{
+  background-color: #CDA267;
+  color: #854541;
+  margin: 5px;
+}
+
+
+.media-object {
+  height: 200px;
+  width: 200px;
+  padding: 10px;
+  display: inline-block;
+}
+
+a{
+  color: #22927A;
+}
+
+
+
+
+
+
+
+
+.fixed-height{
+  height: 300px;
+}
+.input-group{
+  padding-bottom: 7px;
+}
+
+
+
+
+.btn-search {
+  color: white;
+  background-color: #337ab7;
+}
+
+
+
+
+.bg-color{
+  background-color: #854541;
+  color: #CDA267;
+  text-align: center;
+  vertical-align: center;
+  padding-top: 6px;
+}
+
+
+.center-fix{
+  display:table-cell;
+  vertical-align:middle;
+  text-align:center;
+  height:500px;
+  width:500px;
+}
+
+
+.media-heading{
+  margin-bottom: 5px;
+  margin-top: 10px;
+}
+
+
+
+.block {
+  text-align:center;
+}
+.center {
+  margin:auto;
+}
+body {
+  padding-top: 5px;
+}
+
+.placeholder {
+  margin-bottom: 20px;
+}
+
+
+.row{
+  margin: auto;
+}
+
+.margin-adjust-top{
+  margin-top: 50px;
+}
+
+h1 { color: #854541;
+  font-family: Helvetica,
+  cursive; font-size: 60px;
+  font-weight: normal;
+  line-height: 48px;
+  text-align: center;
+  padding-top: 20px;
+  text-shadow: 1px 1px 2px #082b34; }
+
+
+h2 { color: #854541;
+  font-family: 'Julius Sans One', sans-serif;
+  font-size: 35px;
+  font-weight: bold;
+  line-height: 32px;
+  margin: 0 0 24px;
+  text-shadow: 1px 1px 1px #082b34; }
+
+
+p { color: #CDA267;
+  font-family: 'Carme', sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  margin: 0 0 24px; }
+
+.left-arrow{
+  background-color: #854541;
+  color: #F5F5E6;
+  font-size: 30px;
+}
+a:hover {
+  color: black;
+}

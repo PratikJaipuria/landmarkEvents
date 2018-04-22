@@ -1,0 +1,45 @@
+<div class="container">
+  <h4>Venue</h4>
+
+
+  <div class="form-group">
+    <input  [(ngModel)]="name"
+            type="text"
+            class="form-control"
+            placeholder="Venue Name"/>
+  </div>
+
+  <div class="form-group">
+    <input [(ngModel)]="address"
+           type="text"
+           class="form-control"
+           placeholder="Address"/>
+  </div>
+
+  <div class="form-group">
+
+    <input [(ngModel)]="url"
+           type="text"
+           class="form-control"
+           id="url"
+           placeholder="URL">
+  </div>
+
+  <a class="btn btn-primary btn-block"
+     (click)="createVenue()">Create</a>
+
+  <a class="btn btn-danger  btn-block"
+     (click)="updateVenue(id)">Update</a>
+</div>
+
+
+<div class="container">
+  <h4>Venue List</h4>
+  <li *ngFor="let venue of venues" class="list-group-item">
+    <span>{{venue.name}} {{venue.address}}</span>
+    <a><i (click)="changeVenue(venue)" class="fas fa-cog"></i></a>
+    <a><i (click)="deleteVenue(venue)" class="fas fa-trash-alt"></i></a>
+  </li>
+</div>
+
+
