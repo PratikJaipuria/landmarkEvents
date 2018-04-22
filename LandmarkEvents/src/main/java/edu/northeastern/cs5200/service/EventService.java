@@ -49,10 +49,11 @@ public class EventService {
 	 * @param userId
 	 * @return
 	 */
-		@PostMapping("/api/host/{userId}/event/{tickets}/{baseprice}")
+		@PostMapping("/api/host/{userId}/event")
 		public Event createEventForHost(@RequestBody Event event, @PathVariable("userId") int userId) {
 			Host n = hostRepository.findOne(userId);
 			event.setHost(n);
+			
 			return eventRepository.save(event);
 		}
 		
@@ -69,13 +70,7 @@ public class EventService {
 			List<Performer> tmplist = e.getPerformers();
 			tmplist.add(performer);
 			e.setPerformers(tmplist);
-//			Performer p = performerRepository.findOne(performer.getId());
-//			System.out.println("Performer----> " + p.getFirstName());
-//			List<Event> tolist = p.getEvents();
-//			
-//			tolist.add(e);
-//			p.setEvents(tolist);
-//			performerRepository.save(p);
+
 			return eventRepository.save(e);
 		}
 		
@@ -179,10 +174,10 @@ public class EventService {
 				e.setCityName(event.getCityName());
 			if(event.getStartTime()!=null)
 				e.setStartTime(event.getStartTime());
+			if(event.getEndTime()!=null)
+				e.setEndTime(event.getEndTime());
 			if(event.getTitle()!=null)
 				e.setTitle(event.getTitle());
-			if(event.getHrs()!=0)
-				e.setHrs(event.getHrs());
 			if(event.getVenue()!=null)
 				e.setVenue(event.getVenue());
 			if(event.getUrl()!=null)

@@ -19,8 +19,6 @@ public class Ticket {
 	@OneToOne
 	private Review review;
 	
-	
-
 	public Review getReview() {
 		return review;
 	}

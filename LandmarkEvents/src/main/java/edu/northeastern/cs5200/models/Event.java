@@ -41,11 +41,10 @@ public class Event {
 	
 	private Date startTime;
 	
+	private Date endTime;
+	
 	private String title;
 	
-	private boolean allDay;
-	
-	private int hrs;
 
 	public int getId() {
 		return id;
@@ -128,28 +127,20 @@ public class Event {
 		this.startTime = startTime;
 	}
 
+	public Date getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(Date endTime) {
+		this.endTime = endTime;
+	}
+
 	public String getTitle() {
 		return title;
 	}
 
 	public void setTitle(String title) {
 		this.title = title;
-	}
-
-	public boolean isAllDay() {
-		return allDay;
-	}
-
-	public void setAllDay(boolean allDay) {
-		this.allDay = allDay;
-	}
-
-	public int getHrs() {
-		return hrs;
-	}
-
-	public void setHrs(int hrs) {
-		this.hrs = hrs;
 	}
 
 	public Event() {
