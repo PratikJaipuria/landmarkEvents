@@ -32,21 +32,7 @@ public class VenueService {
 		return venueRepository.save(venue);
 	}
 	
-	/**
-	 * 
-	 * @param venue
-	 * @param eventId
-	 * @return
-	 */
-//	@PostMapping("/api/event/{eventId}/venue")
-//	public Venue addVenueToEvent(
-//			@RequestBody Venue venue, @PathVariable("eventId") int eventId) {
-//		Event e = eventRepository.findOne(eventId);
-//		e.setVenue(venue);
-//		eventRepository.save(e);
-//		venue.setEvents(e);
-//		return venueRepository.save(venue);
-//	}
+	
 	
 	//FIND VENUE BY VENUE ID
 	@GetMapping("/api/venue/{venueId}")

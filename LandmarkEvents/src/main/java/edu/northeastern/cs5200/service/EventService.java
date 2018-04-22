@@ -49,7 +49,7 @@ public class EventService {
 	 * @param userId
 	 * @return
 	 */
-		@PostMapping("/api/host/{userId}/event")
+		@PostMapping("/api/host/{userId}/event/{tickets}/{baseprice}")
 		public Event createEventForHost(@RequestBody Event event, @PathVariable("userId") int userId) {
 			Host n = hostRepository.findOne(userId);
 			event.setHost(n);
@@ -99,15 +99,35 @@ public class EventService {
 			return eventRepository.save(e);
 		}
 		
-/** 
- * 
- * @param hostId
- * @param venueId
- * @param performerId
- * @param cityName
- * @param category
- * @return
- */
+		/**
+		 * 
+		 * @param venue
+		 * @param eventId
+		 * @return
+		 */
+		@PutMapping("/api/event/{eventId}/venue")
+		public Event addVenueToEvent(
+				@RequestBody Venue venue, @PathVariable("eventId") int eventId) {
+			Event e = eventRepository.findOne(eventId);
+			Venue v = venueRepository.findOne(venue.getId());
+			List<Event> vEvents= v.getEvents();
+			vEvents.add(e);
+			v.setEvents(vEvents);
+
+			e.setVenue(venue);
+			venueRepository.save(v);
+			return eventRepository.save(e);
+		}
+		
+		/** 
+		 * 
+		 * @param hostId
+		 * @param venueId
+		 * @param performerId
+		 * @param cityName
+		 * @param category
+		 * @return
+		 */
 		
 		@GetMapping("/api/host/event")
 		public List<Event> getAllEvents(@RequestParam(name="hostId", required=false)
@@ -122,7 +142,7 @@ public class EventService {
 				return (List<Event>) eventRepository.findEventByHost(n);
 			} else if(venueId != null && hostId==null && performerId == null && cityName == null && category== null) {
 				Venue v = venueRepository.findOne(venueId);
-				return (List<Event>) eventRepository.findEventByVenue(v);
+				return v.getEvents();
 			} else if(venueId == null && hostId==null && performerId != null && cityName == null && category== null) {
 				Performer p = performerRepository.findOne(performerId);
 				return p.getEvents();
@@ -159,7 +179,7 @@ public class EventService {
 				e.setCityName(event.getCityName());
 			if(event.getStartTime()!=null)
 				e.setStartTime(event.getStartTime());
-			if(e.getTitle()!=null)
+			if(event.getTitle()!=null)
 				e.setTitle(event.getTitle());
 			if(event.getHrs()!=0)
 				e.setHrs(event.getHrs());

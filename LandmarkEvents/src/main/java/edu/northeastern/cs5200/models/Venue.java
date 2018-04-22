@@ -14,7 +14,7 @@ public class Venue {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@OneToMany
+	@OneToMany(cascade=CascadeType.ALL)
 	@JsonIgnore
 	private List<Event> events = null;
 	
@@ -38,8 +38,8 @@ public class Venue {
 		return events;
 	}
 
-	public void setEvents(List<Event> event) {
-		this.events = event;
+	public void setEvents(List<Event> events) {
+		this.events = events;
 	}
 
 	public String getAddress() {
