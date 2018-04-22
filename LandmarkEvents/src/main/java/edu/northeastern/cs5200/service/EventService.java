@@ -64,7 +64,7 @@ public class EventService {
 		 * @param eventId
 		 * @return
 		 */
-		@PutMapping("/api/event/{eventId}/performer")
+		@PutMapping("/api/host/event/{eventId}/performer")
 		public Event addPerformerToEvent(@RequestBody Performer performer,  @PathVariable("eventId") int eventId) {
 			Event e = eventRepository.findOne(eventId);
 			List<Performer> tmplist = e.getPerformers();
@@ -80,7 +80,7 @@ public class EventService {
 		 * @param eventId
 		 * @return
 		 */
-		@PutMapping("/api/event/{eventId}/performer/{performerId}")
+		@PutMapping("/api/host/event/{eventId}/performer/{performerId}")
 		public Event removePerformerForEvent(@PathVariable("performerId") int performerId,  @PathVariable("eventId") int eventId) {
 			
 			Event e = eventRepository.findOne(eventId);
