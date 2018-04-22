@@ -29,7 +29,7 @@ export class VenueComponent implements OnInit {
       );
   }
 
-  createVenue(venue){
+  createVenue(){
 
     let newVenue = new Venue(this.name,this.address,this.url);
     this.venueService.saveVenue(newVenue).subscribe(

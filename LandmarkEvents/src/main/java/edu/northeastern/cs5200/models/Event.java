@@ -18,7 +18,7 @@ public class Event {
 	@JsonIgnore
 	private Host host = null;
 	
-	@OneToMany(cascade=CascadeType.REMOVE)
+	@OneToMany(cascade=CascadeType.ALL)
 	@JsonIgnore
 	private List<Ticket> ticket = null;
 	

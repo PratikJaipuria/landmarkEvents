@@ -33,8 +33,7 @@ export class HostRegisterComponent implements OnInit {
     this.router.navigate(['host/' + id +'/event']);
   };
 
-  createHost(user){
-
+  createHost(){
     let newHost = new Host(this.firstName,this.lastName,this.userName,this.password,this.companyName);
     this.userService.saveUser(newHost, "HOST").subscribe(
       () => {
@@ -47,7 +46,7 @@ export class HostRegisterComponent implements OnInit {
   updateHost(id){
     let newHost = new Host(this.firstName,this.lastName,this.userName,this.password, this.companyName);
     this.userService.updateUser(newHost,id,"HOST").subscribe(
-      () => {
+      (data : any) => {
         this.ngOnInit();
       },
       (error)=> console.log(error)

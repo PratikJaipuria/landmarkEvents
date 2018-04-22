@@ -29,7 +29,7 @@ export class PerformerComponent implements OnInit {
       );
   }
 
-  createPerformer(user){
+  createPerformer(){
 
     let newEventee = new Performer(this.firstName,this.lastName,this.userName,this.password,this.bio);
     this.userService.saveUser(newEventee, "PERFORMER").subscribe(
