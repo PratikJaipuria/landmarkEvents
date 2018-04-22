@@ -10,10 +10,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Eventee extends User {
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	private Ticket ticket;
 	
-	@ManyToMany(cascade=CascadeType.ALL)
+	@ManyToMany
 	@JsonIgnore
 	@JoinTable(name="Performer2Eventee",joinColumns=@JoinColumn(name="EventeeId", referencedColumnName="ID"), 
 			inverseJoinColumns=@JoinColumn(name="PerformerId", referencedColumnName="ID"))

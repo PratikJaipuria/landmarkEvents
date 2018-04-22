@@ -14,7 +14,7 @@ public class Event {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JsonIgnore
 	private Host host = null;
 	
@@ -23,7 +23,7 @@ public class Event {
 	private List<Ticket> ticket = null;
 	
 	
-	@ManyToMany(cascade=CascadeType.ALL)
+	@ManyToMany
 	@JsonIgnore
 	@JoinTable(name="Event2Performer",joinColumns=@JoinColumn(name="EventId", referencedColumnName="ID"), 
 			inverseJoinColumns=@JoinColumn(name="PerformerId", referencedColumnName="ID"))

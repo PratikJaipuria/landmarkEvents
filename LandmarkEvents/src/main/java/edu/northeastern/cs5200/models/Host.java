@@ -12,7 +12,7 @@ public class Host extends User {
 	
 	private String companyName;
 	
-	@OneToMany(mappedBy="host", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="host")
 	@JsonIgnore
 	private List<Event> eventsHosted = null;
 
