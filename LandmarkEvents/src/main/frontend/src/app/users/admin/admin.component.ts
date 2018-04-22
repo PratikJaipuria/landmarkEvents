@@ -16,6 +16,8 @@ export class AdminComponent implements OnInit {
   performers:Performer[] = [];
   eventees:Eventee[] = [];
   hosts:Host[] = [];
+  entries:string[] = ['HOST', "EVENTEE", "HOST"];
+  tempVal: string='None';
   id : number;
   type: string;
   userName : string;
@@ -51,15 +53,18 @@ export class AdminComponent implements OnInit {
       );
   }
 
-  createUser(type){
-
-    let newUser = new User(this.firstName,this.lastName,this.userName,this.password,type);
-    this.userService.saveUser(newUser,type).subscribe(
-      () => {
-        this.ngOnInit();
-      },
-      (error)=> console.log(error)
-    );
+  createUser(){
+    if(this.tempVal != 'None'){
+      let newUser = new User(this.firstName,this.lastName,this.userName,this.password,this.tempVal);
+      this.userService.saveUser(newUser,type).subscribe(
+        () => {
+          this.ngOnInit();
+        },
+        (error)=> console.log(error)
+      );
+    } else{
+      alert("Cannot create User");
+    }
 
 
   }
