@@ -66,9 +66,9 @@ public class AdminService {
 			return (List<?>) eventeeRepository.findAll();
 		if(type.equals("performer"))
 			return (List<?>) performerRepository.findAll();
-		else 
-			return (List<?>) userRepository.findAll();
-		
+		if(type.equals("users"))
+			return (List<User>) userRepository.findAll();
+		return null;
 	}
 	
 	//CREATE NEW PERFORMER FOR ADMIN
@@ -135,7 +135,7 @@ public class AdminService {
 	
 		
 	//DELETE USER
-	@DeleteMapping("/api/admin/type/{userId}")
+	@DeleteMapping("/api/admin/{type}/{userId}")
 	public void deleteUser(@PathVariable("userId") int id,
 			@PathVariable("type") String type) {
 		if(type.equals("host"))

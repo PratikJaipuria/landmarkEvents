@@ -23,13 +23,13 @@ public class Event {
 	private List<Ticket> ticket = null;
 	
 	
-	@ManyToMany
+	@ManyToMany(cascade=CascadeType.ALL)
 	@JsonIgnore
 	@JoinTable(name="Event2Performer",joinColumns=@JoinColumn(name="EventId", referencedColumnName="ID"), 
 			inverseJoinColumns=@JoinColumn(name="PerformerId", referencedColumnName="ID"))
 	private List<Performer> performers = null;
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JsonIgnore
 	private Venue venue = null;
 	
