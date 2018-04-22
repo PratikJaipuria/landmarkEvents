@@ -10,7 +10,12 @@ export class EventService {
   }
 
   saveEvent(event : Event, hostId : number) {
+    console.log(event);
     return this.http.post('/api/host/'+ hostId + '/event',event).map(response => response.json());
+  }
+
+  updateEvent(event : Event, eventId : number) {
+    return this.http.put('/api/host/event/'+ eventId, event).map(response => response.json());
   }
 
   getEvent(hostId : number){
