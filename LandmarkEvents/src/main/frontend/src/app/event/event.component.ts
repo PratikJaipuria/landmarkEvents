@@ -18,6 +18,7 @@ export class EventComponent implements OnInit {
 
   events:Event[] = [];
   cityName : string;
+  id:number;
   title : string;
   startTime : Date;
   endTime: Date;
@@ -78,6 +79,27 @@ export class EventComponent implements OnInit {
       },
       (error)=> console.log(error)
     );
+  }
+
+  updateEvent(id:number){
+    let newEvent = new Event(this.url,this.title,this.cityName,this.category,this.startTime,this.endTime,this.venue);
+
+    this.eventService.updateEvent(newEvent, id).subscribe(
+      () => {
+        this.ngOnInit();
+      },
+      (error)=> console.log(error)
+    );
+  }
+  changeEvent(event){
+
+    this.id = event.id;
+    this.url = event.url;
+    this.title = event.title;
+    this.cityName = event.cityName;
+    this.category = event.category;
+    this.venue = event.venue;
+
   }
 
 
