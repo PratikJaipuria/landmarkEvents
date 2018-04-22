@@ -16,12 +16,16 @@ import org.springframework.web.bind.annotation.RestController;
 import edu.northeastern.cs5200.models.Eventee;
 import edu.northeastern.cs5200.models.Performer;
 import edu.northeastern.cs5200.repositories.EventeeRepository;
+import edu.northeastern.cs5200.repositories.PerformerRepository;
 
 @RestController
 public class EventeeService {
 	
 	@Autowired
 	EventeeRepository eventeeRepository;
+	
+	@Autowired
+	PerformerRepository performerRepository;
 	
 	//CREATE AN EVENTEE
 	@PostMapping("/api/eventee")
@@ -84,25 +88,45 @@ public class EventeeService {
 	 */
 	@PutMapping("/api/eventee/{eid}/performer")
 	public Eventee followPerformer(@PathVariable("eid") int eid,
-			@RequestBody Performer performer) {
-		
-		Eventee eventee = eventeeRepository.findOne(eid);
-		List<Performer> entertainers = eventee.getEntertainers();
-		entertainers.add(performer);
-		eventee.setEntertainers(entertainers);
-		return eventeeRepository.save(eventee);
-		}
+		@RequestBody Performer performer) {
+	
+	Eventee eventee = eventeeRepository.findOne(eid);
+	List<Performer> entertainers = eventee.getEntertainers();
+	entertainers.add(performer);
+	eventee.setEntertainers(entertainers);
+	return eventeeRepository.save(eventee);
+	}
+	
+	@PutMapping("/api/eventee/{eid}/performer/{pid}")
+	public Eventee unfollowPerformer(@PathVariable("eid") int eid,
+			@PathVariable("pid") int pid) {
+	
+	Eventee eventee = eventeeRepository.findOne(eid);
+	Performer performer = performerRepository.findOne(pid);
+	
+	List<Performer> entertainers = eventee.getEntertainers();
+	entertainers.add(performer);
+	eventee.setEntertainers(entertainers);
+	
+	List<Eventee> eventees = performer.getEventees();
+	eventees.remove(eventee);
+	performer.setEventees(eventees);
+	
+	performerRepository.save(performer);
+	
+	return eventeeRepository.save(eventee);
+	}
 	
 	
 	//FIND ALL Performers BY Eventee ID
-		@GetMapping("/api/eventee/{eventeeId}/performer")
-		public List<Performer> findPerformerById(
-				@PathVariable("eventeeId") int eid) {
-			Eventee eventee = eventeeRepository.findOne(eid);
-			List<Performer> entertainers = eventee.getEntertainers();
-			
-			return entertainers;
-		}
+	@GetMapping("/api/eventee/{eventeeId}/performer")
+	public List<Performer> findPerformerById(
+			@PathVariable("eventeeId") int eid) {
+		Eventee eventee = eventeeRepository.findOne(eid);
+		List<Performer> entertainers = eventee.getEntertainers();
+		
+		return entertainers;
+	}
 		
 	//DELETE AN EVENTEE
 	@DeleteMapping("/api/eventee/{eventeeId}")

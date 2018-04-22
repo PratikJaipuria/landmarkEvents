@@ -14,11 +14,11 @@ public class Event {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
 	@JsonIgnore
 	private Host host = null;
 	
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.REMOVE)
 	@JsonIgnore
 	private List<Ticket> ticket = null;
 	

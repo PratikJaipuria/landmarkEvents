@@ -159,6 +159,14 @@ public class EventService {
 
 		}
 		
+		// FIND EVENT BY ID
+		@GetMapping("/api/event/{eventId}")
+		public Event findEventById(
+				@PathVariable("eventId") int eventId) {
+			Event e = eventRepository.findOne(eventId);
+			return e;
+		}
+		
 		/** 
 		 * 
 		 * @param eid

@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Eventee extends User {
 	
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(cascade=CascadeType.REMOVE)
 	private Ticket ticket;
 	
 	@ManyToMany
