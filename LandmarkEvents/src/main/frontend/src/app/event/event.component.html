@@ -69,13 +69,7 @@
 
   <li *ngFor="let event of events" class="list-group-item">
     <div>
-      Title : {{event.title}}
-    </div>
-    <div>
-      Start Time : {{event.startTime}}
-    </div>
-    <div>
-      CityName : {{event.cityName}}
+    <span (click)="eventProfile(event.id)" >Title : {{event.title}}</span>
     </div>
 
     <a><i (click)="changeEvent(event)" class="fas fa-cog"></i></a>

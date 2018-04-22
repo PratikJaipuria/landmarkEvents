@@ -17,4 +17,7 @@ export class EventService {
     return this.http.get('api/host/event?hostId='+ hostId).map(response => response.json());
   }
 
+  getEventbyID(eventId : number){
+    return this.http.get('api/event/' + eventId).map(response => response.json());
+  }
 }

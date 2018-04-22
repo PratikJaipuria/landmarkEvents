@@ -21,6 +21,8 @@ import {VenueService} from "./venue/venue.service";
 import {EventService} from "./event/event.service";
 import { EveteeProfileComponent } from './users/eventee/evetee-profile/evetee-profile.component';
 import { PerformerProfileComponent } from './users/performer/performer-profile/performer-profile.component';
+import { HostProfileComponent } from './users/host/host-profile/host-profile.component';
+import { EventProfileComponent } from './event/event-profile/event-profile.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { PerformerProfileComponent } from './users/performer/performer-profile/p
     VenueComponent,
     EveteeProfileComponent,
     PerformerProfileComponent,
+    HostProfileComponent,
+    EventProfileComponent,
   ],
   imports: [
     BrowserModule,

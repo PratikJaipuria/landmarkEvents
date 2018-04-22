@@ -3,6 +3,7 @@ import {Venue} from "../venue/venue.model";
 
 export class Event {
 
+  public id : number;
   public url : string;
   public title : string;
   public cityName : string;

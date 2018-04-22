@@ -18,7 +18,7 @@ export class UserService{
     return this.http.get('/api/eventee/'+id+'/notfollowing').map(response => response.json());
   }
   unfollowPerformer(performer:Performer,id:number){
-    return this.http.put('/api/eventee/'+id+'/performer', performer).map(response => response.json());
+    return this.http.put('/api/eventee/'+id+'/unfollowperformer', performer).map(response => response.json());
   }
   followPerformer(performer:Performer,id:number){
     return this.http.put('/api/eventee/'+id+'/performer', performer).map(response => response.json());
