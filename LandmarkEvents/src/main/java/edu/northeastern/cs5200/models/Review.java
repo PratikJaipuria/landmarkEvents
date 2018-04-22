@@ -1,5 +1,6 @@
 package edu.northeastern.cs5200.models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,7 +18,7 @@ public class Review {
 	
 	private String description;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	private Ticket ticket;
 
 	public int getId() {

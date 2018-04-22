@@ -14,7 +14,7 @@ public class Venue {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.REMOVE)
 	@JsonIgnore
 	private List<Event> events = null;
 	

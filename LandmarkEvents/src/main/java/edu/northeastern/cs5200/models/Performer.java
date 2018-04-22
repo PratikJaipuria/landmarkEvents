@@ -12,11 +12,11 @@ public class Performer extends User {
 	
 	private String bio;
 	
-	@ManyToMany(mappedBy="performers")
+	@ManyToMany(mappedBy="performers",cascade=CascadeType.ALL)
 	@JsonIgnore
 	private List<Event> events = null;
 	
-	@ManyToMany(mappedBy="entertainers")
+	@ManyToMany(mappedBy="entertainers", cascade=CascadeType.ALL)
 	@JsonIgnore
 	private List<Eventee> eventees = null;
 

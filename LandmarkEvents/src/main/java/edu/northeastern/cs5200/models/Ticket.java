@@ -16,7 +16,7 @@ public class Ticket {
 	
 	private double price;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	private Review review;
 	
 	public Review getReview() {
