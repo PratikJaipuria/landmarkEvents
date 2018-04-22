@@ -49,10 +49,14 @@ public class EventService {
 	 * @param userId
 	 * @return
 	 */
-		@PostMapping("/api/host/{userId}/event")
-		public Event createEventForHost(@RequestBody Event event, @PathVariable("userId") int userId) {
+		@PostMapping("/api/host/{userId}/venue/{venueId}/event")
+		public Event createEventForHost(@RequestBody Event event, 
+				@PathVariable("userId") int userId,
+				@PathVariable("venueId") int vid) {
 			Host n = hostRepository.findOne(userId);
 			event.setHost(n);
+			Venue v  = venueRepository.findOne(vid);
+			event.setVenue(v);
 			
 			return eventRepository.save(event);
 		}
@@ -105,12 +109,12 @@ public class EventService {
 				@RequestBody Venue venue, @PathVariable("eventId") int eventId) {
 			Event e = eventRepository.findOne(eventId);
 			Venue v = venueRepository.findOne(venue.getId());
-			List<Event> vEvents= v.getEvents();
-			vEvents.add(e);
-			v.setEvents(vEvents);
+			//List<Event> vEvents= v.getEvents();
+			//vEvents.add(e);
+			//v.setEvents(vEvents);
 
-			e.setVenue(venue);
-			venueRepository.save(v);
+			e.setVenue(v);
+			//venueRepository.save(v);
 			return eventRepository.save(e);
 		}
 		

@@ -14,7 +14,7 @@ public class Event {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JsonIgnore
 	private Host host = null;
 	

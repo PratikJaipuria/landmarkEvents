@@ -71,7 +71,7 @@ public class AdminService {
 		return null;
 	}
 	
-	//CREATE NEW PERFORMER FOR ADMIN
+	//UPDATE PERFORMER FOR ADMIN
 	@PutMapping("/api/admin/performer/{performerId}")
 	public Performer updatePerformer(@PathVariable("performerId") int pid,
 			@RequestBody Performer performer) {
@@ -91,7 +91,7 @@ public class AdminService {
 		return performerRepository.save(p);
 	}
 	
-	//CREATE NEW EVENTEE FOR ADMIN
+	//UPDATE EVENTEE FOR ADMIN
 	@PutMapping("/api/admin/eventee/{eventeeId}")
 	public Eventee updateEventee(@PathVariable("eventeeId") int eid,
 			@RequestBody Eventee eventee) {
@@ -112,7 +112,7 @@ public class AdminService {
 		
 	}
 	
-	//CREATE NEW HOST FOR ADMIN
+	//UPDATE HOST FOR ADMIN
 	@PutMapping("/api/admin/host/{hostId}")
 	public Host updateHost(@PathVariable("hostId") int hid,
 			@RequestBody Host host) {
