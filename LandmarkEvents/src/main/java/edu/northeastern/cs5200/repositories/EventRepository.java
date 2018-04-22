@@ -19,5 +19,11 @@ public interface EventRepository extends CrudRepository<Event, Integer> {
 	@Query("SELECT h FROM Event h WHERE h.cityName=:cityName")
 	Iterable<Event> findEventByCity(@Param("cityName") String cityName);
 	
+	@Query("SELECT h FROM Event h WHERE h.category=:category")
+	Iterable<Event> findEventByCategory(@Param("category") String category);
+	
+	@Query("SELECT h FROM Event h WHERE h.cityName=:cityName and h.category=:category")
+	Iterable<Event> findEventByCityCategory(@Param("cityName") String cityName, @Param("category") String category);
+	
 
 }

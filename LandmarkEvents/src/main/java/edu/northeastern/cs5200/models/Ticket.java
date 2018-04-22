@@ -14,14 +14,11 @@ public class Ticket {
 	@OneToOne
 	private Eventee eventee;
 	
-	
 	private double price;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	private Review review;
 	
-	
-
 	public Review getReview() {
 		return review;
 	}

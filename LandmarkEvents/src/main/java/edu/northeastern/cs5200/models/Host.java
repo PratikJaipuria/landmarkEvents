@@ -1,5 +1,6 @@
 package edu.northeastern.cs5200.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -11,16 +12,18 @@ public class Host extends User {
 	
 	private String companyName;
 	
-	@OneToMany(mappedBy="host", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="host")
 	@JsonIgnore
 	private List<Event> eventsHosted = null;
 
 	public List<Event> getEventsHosted() {
+		if(eventsHosted == null)
+			return new ArrayList<Event>();
 		return eventsHosted;
 	}
 
 	public void setEventsHosted(List<Event> eventsHosted) {
-		this.eventsHosted = eventsHosted;
+		this.eventsHosted = eventsHosted;// need to check??
 	}
 
 	public String getCompanyName() {

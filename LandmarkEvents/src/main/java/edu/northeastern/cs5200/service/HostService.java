@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import edu.northeastern.cs5200.models.Event;
 import edu.northeastern.cs5200.models.Host;
+import edu.northeastern.cs5200.repositories.EventRepository;
 import edu.northeastern.cs5200.repositories.HostRepository;
 
 
@@ -21,6 +23,9 @@ public class HostService {
 	
 	@Autowired
 	HostRepository hostRepository;
+	
+	@Autowired
+	EventRepository eventrepository;
 	
 	//CREATE A HOST
 	@PostMapping("/api/host")
@@ -53,6 +58,18 @@ public class HostService {
 	public Host findHostById(
 			@PathVariable("hostId") int hid) {
 		return hostRepository.findOne(hid);
+	}
+	
+	/** 
+	 * Find Host By Event ID.
+	 * @param eventId
+	 * @return
+	 */
+	@GetMapping("/api/event/{eventId}/host")
+	public Host findHostByEventId(
+			@PathVariable("eventId") int eventId) {
+		Event e = eventrepository.findOne(eventId);
+		return e.getHost();
 	}
 	
 	//UPDATE A HOST

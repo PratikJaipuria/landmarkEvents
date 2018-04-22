@@ -8,15 +8,40 @@ import { HostRegisterComponent } from './users/host/host-register.component';
 import {UserService} from "./users/user.service";
 import {FormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
-import { HostAddListComponent } from './users/event/event.component';
 import {routing} from "./app.routing";
+import { SearchComponent } from './search/search.component';
+import { EventeeComponent } from './users/eventee/eventee.component';
+import { PerformerComponent } from './users/performer/performer.component';
+import { EventComponent } from './event/event.component';
+import { TicketComponent } from './ticket/ticket.component';
+import { ReviewComponent } from './review/review.component';
+import { VenueComponent } from './venue/venue.component';
+import {SearchService} from "./search/search.service";
+import {VenueService} from "./venue/venue.service";
+import {EventService} from "./event/event.service";
+import { EveteeProfileComponent } from './users/eventee/evetee-profile/evetee-profile.component';
+import { PerformerProfileComponent } from './users/performer/performer-profile/performer-profile.component';
+import { HostProfileComponent } from './users/host/host-profile/host-profile.component';
+import { EventProfileComponent } from './event/event-profile/event-profile.component';
+import { SearchProfileComponent } from './search/search-profile/search-profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UsersComponent,
     HostRegisterComponent,
-    HostAddListComponent
+    SearchComponent,
+    EventeeComponent,
+    PerformerComponent,
+    EventComponent,
+    TicketComponent,
+    ReviewComponent,
+    VenueComponent,
+    EveteeProfileComponent,
+    PerformerProfileComponent,
+    HostProfileComponent,
+    EventProfileComponent,
+    SearchProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -24,7 +49,7 @@ import {routing} from "./app.routing";
     FormsModule,
     routing
   ],
-  providers: [UserService],
+  providers: [UserService,SearchService,VenueService, EventService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

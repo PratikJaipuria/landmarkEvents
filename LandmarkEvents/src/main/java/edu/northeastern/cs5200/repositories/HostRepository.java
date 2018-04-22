@@ -15,6 +15,9 @@ public interface HostRepository extends CrudRepository<Host, Integer>{
 	
 	@Query("SELECT h FROM Host h WHERE h.userName=:username")
 	Iterable<Host> findHostByUsername(@Param("username") String username);
+	
+//	@Query("SELECT h FROM Event h WHERE h.=:host")
+//	Host findHostByEvent(@Param("host") Host host);
 
 
 	

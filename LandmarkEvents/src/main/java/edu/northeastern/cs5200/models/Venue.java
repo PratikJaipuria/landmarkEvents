@@ -1,6 +1,11 @@
 package edu.northeastern.cs5200.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Venue {
@@ -9,8 +14,9 @@ public class Venue {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@OneToOne
-	private Event event;
+	@OneToMany(cascade=CascadeType.REMOVE)
+	@JsonIgnore
+	private List<Event> events = null;
 	
 	private String address;
 	
@@ -26,12 +32,14 @@ public class Venue {
 		this.id = id;
 	}
 
-	public Event getEvent() {
-		return event;
+	public List<Event> getEvents() {
+		if(this.events == null) 
+			return new ArrayList<Event>(); 
+		return events;
 	}
 
-	public void setEvent(Event event) {
-		this.event = event;
+	public void setEvents(List<Event> events) {
+		this.events = events;
 	}
 
 	public String getAddress() {

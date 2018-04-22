@@ -53,6 +53,7 @@ public class EventService {
 		public Event createEventForHost(@RequestBody Event event, @PathVariable("userId") int userId) {
 			Host n = hostRepository.findOne(userId);
 			event.setHost(n);
+			
 			return eventRepository.save(event);
 		}
 		
@@ -63,11 +64,14 @@ public class EventService {
 		 * @param eventId
 		 * @return
 		 */
-		@PutMapping("/api/event/{eventId}/performer")
+		@PutMapping("/api/host/event/{eventId}/performer")
 		public Event addPerformerToEvent(@RequestBody Performer performer,  @PathVariable("eventId") int eventId) {
 			Event e = eventRepository.findOne(eventId);
-			e.getPerformers().add(performer);
-			return e;
+			List<Performer> tmplist = e.getPerformers();
+			tmplist.add(performer);
+			e.setPerformers(tmplist);
+
+			return eventRepository.save(e);
 		}
 		
 		/** 
@@ -76,11 +80,38 @@ public class EventService {
 		 * @param eventId
 		 * @return
 		 */
-		@DeleteMapping("/api/event/{eventId}/performer")
-		public Event removePerformerForEvent(@RequestBody Performer performer,  @PathVariable("eventId") int eventId) {
+		@PutMapping("/api/host/event/{eventId}/performer/{performerId}")
+		public Event removePerformerForEvent(@PathVariable("performerId") int performerId,  @PathVariable("eventId") int eventId) {
+			
 			Event e = eventRepository.findOne(eventId);
-			e.getPerformers().remove(performer);
-			return e;
+			Performer p = performerRepository.findOne(performerId);
+			
+			List<Performer> performers = e.getPerformers();
+			
+			performers.remove(p);	
+			e.setPerformers(performers);
+			
+			return eventRepository.save(e);
+		}
+		
+		/**
+		 * 
+		 * @param venue
+		 * @param eventId
+		 * @return
+		 */
+		@PutMapping("/api/event/{eventId}/venue")
+		public Event addVenueToEvent(
+				@RequestBody Venue venue, @PathVariable("eventId") int eventId) {
+			Event e = eventRepository.findOne(eventId);
+			Venue v = venueRepository.findOne(venue.getId());
+			List<Event> vEvents= v.getEvents();
+			vEvents.add(e);
+			v.setEvents(vEvents);
+
+			e.setVenue(venue);
+			venueRepository.save(v);
+			return eventRepository.save(e);
 		}
 		
 		/** 
@@ -89,6 +120,7 @@ public class EventService {
 		 * @param venueId
 		 * @param performerId
 		 * @param cityName
+		 * @param category
 		 * @return
 		 */
 		
@@ -97,27 +129,42 @@ public class EventService {
 				Integer hostId, @RequestParam(name="venueId", required=false)
 		Integer venueId, @RequestParam(name="performerId", required=false)
 		Integer performerId, @RequestParam(name="cityName", required=false)
-		String cityName){
+		String cityName, @RequestParam(name="category", required=false)
+		String category){
 			
-			if(venueId == null && hostId!=null && performerId == null && cityName == null) {
+			if(venueId == null && hostId!=null && performerId == null && cityName == null && category== null) {
 				Host n = hostRepository.findOne(hostId);
 				return (List<Event>) eventRepository.findEventByHost(n);
-			} else if(venueId != null && hostId==null && performerId == null && cityName == null) {
+			} else if(venueId != null && hostId==null && performerId == null && cityName == null && category== null) {
 				Venue v = venueRepository.findOne(venueId);
-				return (List<Event>) eventRepository.findEventByVenue(v);
-			} else if(venueId == null && hostId==null && performerId != null && cityName == null) {
+				return v.getEvents();
+			} else if(venueId == null && hostId==null && performerId != null && cityName == null && category== null) {
 				Performer p = performerRepository.findOne(performerId);
 				return p.getEvents();
-			} else if(venueId == null && hostId==null && performerId == null && cityName != null) {
+			} else if(venueId == null && hostId==null && performerId == null && cityName != null && category== null) {
 				return (List<Event>) eventRepository.findEventByCity(cityName);
 			}
-			else if(venueId == null && hostId==null && performerId == null && cityName == null){
+			else if(venueId == null && hostId==null && performerId == null && cityName == null && category== null){
 				return (List<Event>) eventRepository.findAll();
+				
+			} else if(venueId == null && hostId==null && performerId == null && cityName != null && category!= null){
+				return (List<Event>) eventRepository.findEventByCityCategory(cityName, category);
+				
+			} else if(venueId == null && hostId==null && performerId == null && cityName == null && category!= null){
+				return (List<Event>) eventRepository.findEventByCategory(category);
 				
 			} else {
 				return new ArrayList();
 			}
 
+		}
+		
+		// FIND EVENT BY ID
+		@GetMapping("/api/event/{eventId}")
+		public Event findEventById(
+				@PathVariable("eventId") int eventId) {
+			Event e = eventRepository.findOne(eventId);
+			return e;
 		}
 		
 		/** 
@@ -135,10 +182,10 @@ public class EventService {
 				e.setCityName(event.getCityName());
 			if(event.getStartTime()!=null)
 				e.setStartTime(event.getStartTime());
-			if(e.getTitle()!=null)
+			if(event.getEndTime()!=null)
+				e.setEndTime(event.getEndTime());
+			if(event.getTitle()!=null)
 				e.setTitle(event.getTitle());
-			if(event.getHrs()!=0)
-				e.setHrs(event.getHrs());
 			if(event.getVenue()!=null)
 				e.setVenue(event.getVenue());
 			if(event.getUrl()!=null)

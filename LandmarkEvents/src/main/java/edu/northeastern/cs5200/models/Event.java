@@ -1,5 +1,6 @@
 package edu.northeastern.cs5200.models;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class Event {
 	@JsonIgnore
 	private Host host = null;
 	
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.REMOVE)
 	@JsonIgnore
 	private List<Ticket> ticket = null;
 	
@@ -28,20 +29,22 @@ public class Event {
 			inverseJoinColumns=@JoinColumn(name="PerformerId", referencedColumnName="ID"))
 	private List<Performer> performers = null;
 	
-	@OneToOne
-	private Venue venue;
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JsonIgnore
+	private Venue venue = null;
 	
 	private String url;
 	
 	private String cityName;
 	
+	private String category;
+	
 	private Date startTime;
+	
+	private Date endTime;
 	
 	private String title;
 	
-	private boolean allDay;
-	
-	private int hrs;
 
 	public int getId() {
 		return id;
@@ -53,6 +56,14 @@ public class Event {
 
 	public Host getHost() {
 		return host;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	public void setHost(Host host) {
@@ -69,6 +80,8 @@ public class Event {
 
 
 	public List<Performer> getPerformers() {
+		if(performers == null)
+			return new ArrayList<Performer>();
 		return performers;
 	}
 
@@ -85,6 +98,9 @@ public class Event {
 
 	public void setVenue(Venue venue) {
 		this.venue = venue;
+		List<Event> currEvents = venue.getEvents();
+		currEvents.add(this);
+		venue.setEvents(currEvents);
 	}
 
 	public String getUrl() {
@@ -111,28 +127,20 @@ public class Event {
 		this.startTime = startTime;
 	}
 
+	public Date getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(Date endTime) {
+		this.endTime = endTime;
+	}
+
 	public String getTitle() {
 		return title;
 	}
 
 	public void setTitle(String title) {
 		this.title = title;
-	}
-
-	public boolean isAllDay() {
-		return allDay;
-	}
-
-	public void setAllDay(boolean allDay) {
-		this.allDay = allDay;
-	}
-
-	public int getHrs() {
-		return hrs;
-	}
-
-	public void setHrs(int hrs) {
-		this.hrs = hrs;
 	}
 
 	public Event() {
