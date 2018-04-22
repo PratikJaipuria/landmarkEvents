@@ -10,10 +10,12 @@ import {EveteeProfileComponent} from "./users/eventee/evetee-profile/evetee-prof
 import {PerformerProfileComponent} from "./users/performer/performer-profile/performer-profile.component";
 import {EventProfileComponent} from "./event/event-profile/event-profile.component";
 import {SearchProfileComponent} from "./search/search-profile/search-profile.component";
+import {AdminComponent} from "./users/admin/admin.component";
 
 
 const appRoutes: Routes = [
   { path : '', component: SearchComponent },
+  { path : 'admin' , component : AdminComponent},
   { path: 'event/:eventId' , component: SearchProfileComponent},
   { path: 'host/:hostId/event/:eventId', component: EventProfileComponent },
   { path: 'host/:hostId/event', component: EventComponent },

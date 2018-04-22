@@ -41,14 +41,19 @@
            placeholder="Bio">
   </div>
 
-  <tr *ngFor="let entry of entries">
-    <td>{{ entry }}</td>
-    <td>
-      <input type="radio" name="radiogroup"
-             [checked]="idx === 0"
-             [value]="tempVal">
-    </td>
-  </tr>
+  <div class="form-group">
+    <select [(ngModel)]="tempVal">
+      <option *ngFor="let entry of entries" [ngValue]="entry">{{entry}}</option>
+    </select>
+  </div>
+  <!--<tr *ngFor="let entry of entries">-->
+    <!--<td>{{ entry }}</td>-->
+    <!--<td>-->
+      <!--<input type="radio" name="radiogroup"-->
+             <!--[checked]="idx === 0"-->
+             <!--tempVal=entry>-->
+    <!--</td>-->
+  <!--</tr>-->
 
   <a class="btn btn-primary btn-block"
      (click)="createUser()"> Create User</a>

@@ -39,6 +39,7 @@ export class SearchProfileComponent implements OnInit {
 
     this.eventService.getEvent(this.eventId).subscribe(
       (res : Event)=>{
+        console.log(res);
               this.title =res[0].title;
               this.cityName = res[0].cityName;
               this.url = res[0].url;
