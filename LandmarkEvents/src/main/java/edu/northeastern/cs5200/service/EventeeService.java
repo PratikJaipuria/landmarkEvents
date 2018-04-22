@@ -97,6 +97,18 @@ public class EventeeService {
 	return eventeeRepository.save(eventee);
 	}
 	
+	@PutMapping("/api/eventee/{eid}/unfollowperformer")
+	public Eventee unfollowPerformer(@PathVariable("eid") int eid,
+		@RequestBody Performer performer) {
+	
+	Eventee eventee = eventeeRepository.findOne(eid);
+	Performer p = performerRepository.findOne(performer.getId());
+	List<Performer> entertainers = eventee.getEntertainers();
+	entertainers.remove(p);
+	eventee.setEntertainers(entertainers);
+	return eventeeRepository.save(eventee);
+	}
+	
 	@GetMapping("api/eventee/{eventeeId}/notfollowing")
 	public List<Performer> getListPerformerEventeeNotFollowing(
 			@PathVariable("eventeeId") int eid){
