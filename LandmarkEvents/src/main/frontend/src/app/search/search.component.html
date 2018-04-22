@@ -35,22 +35,8 @@
         <li *ngFor="let r of result" class="list-group-item">
 
           <div>
-            Title : {{r['title']}}
+            <span (click)="getEvent(r.id)">Title : {{r['title']}}</span>
           </div>
-
-          <div>
-            Start Time : {{r['start_time']}}
-          </div>
-          <div>
-            All Day : {{r['all_day']}}
-          </div>
-          <div>
-              CityName : {{r['city_name']}}
-          </div>
-          <div>
-            Venue : {{r['venue_name']}}
-          </div>
-
 
         </li>
 

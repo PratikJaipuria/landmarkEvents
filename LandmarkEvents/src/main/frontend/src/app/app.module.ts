@@ -23,6 +23,7 @@ import { EveteeProfileComponent } from './users/eventee/evetee-profile/evetee-pr
 import { PerformerProfileComponent } from './users/performer/performer-profile/performer-profile.component';
 import { HostProfileComponent } from './users/host/host-profile/host-profile.component';
 import { EventProfileComponent } from './event/event-profile/event-profile.component';
+import { SearchProfileComponent } from './search/search-profile/search-profile.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { EventProfileComponent } from './event/event-profile/event-profile.compo
     PerformerProfileComponent,
     HostProfileComponent,
     EventProfileComponent,
+    SearchProfileComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Search} from "./search.model";
 import {SearchService} from "./search.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-search',
@@ -13,13 +14,13 @@ export class SearchComponent implements OnInit {
   location : string;
   text:string;
   result: Event[] = [];
-  constructor(private searchService : SearchService) { }
+  constructor(private searchService : SearchService,  private router: Router) { }
 
   ngOnInit() {
   }
 
   search(){
-    console.log(this.category,this.location);
+
 
     this.searchService.searchInternalQuery(this.category,this.location)
       .subscribe(
@@ -30,6 +31,7 @@ export class SearchComponent implements OnInit {
               (res : any[]) => {
                 for (var i = 0; i < res['events']['event'].length; i++) {
                   this.result.push(res['events']['event'][i]);
+                  // console.log(res['events']['event'][i]);
                 }
               },
               (error)=> console.log(error)
@@ -48,6 +50,9 @@ export class SearchComponent implements OnInit {
     //   );
   }
 
+  getEvent(event:Event){
+    this.router.navigate(['event/' + event]);
+  }
 
 
 }

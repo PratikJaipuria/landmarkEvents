@@ -9,10 +9,12 @@ import {VenueComponent} from "./venue/venue.component";
 import {EveteeProfileComponent} from "./users/eventee/evetee-profile/evetee-profile.component";
 import {PerformerProfileComponent} from "./users/performer/performer-profile/performer-profile.component";
 import {EventProfileComponent} from "./event/event-profile/event-profile.component";
+import {SearchProfileComponent} from "./search/search-profile/search-profile.component";
 
 
 const appRoutes: Routes = [
   { path : '', component: SearchComponent },
+  { path: 'event/:event' , component: SearchProfileComponent},
   { path: 'host/:hostId/event/:eventId', component: EventProfileComponent },
   { path: 'host/:hostId/event', component: EventComponent },
   { path: 'host', component: HostRegisterComponent },

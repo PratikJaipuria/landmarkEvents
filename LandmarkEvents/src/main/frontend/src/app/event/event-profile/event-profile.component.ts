@@ -40,7 +40,7 @@ export class EventProfileComponent implements OnInit {
           this.cityName = event.cityName;
           this.url = event.url;
           this.startTime = event.startTime;
-          this.endTime = event.endTime;
+          this.endTime = event.endTime
         },
         (error)=> console.log(error)
       );
