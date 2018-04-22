@@ -1,0 +1,79 @@
+<div class="container">
+  <h4>Event</h4>
+
+
+  <div class="form-group">
+    <input  [(ngModel)]="title"
+            type="text"
+            class="form-control"
+            placeholder="Title"/>
+  </div>
+
+  <div class="form-group">
+    <input [(ngModel)]="cityName"
+           type="text"
+           class="form-control"
+           placeholder="City Name"/>
+  </div>
+
+  <div class="form-group">
+
+    <input [(ngModel)]="url"
+           type="text"
+           class="form-control"
+           id="url"
+           placeholder="URL">
+  </div>
+
+  <div class="form-group">
+
+    <input [(ngModel)]="category"
+           type="text" class="form-control"
+           id="Category"
+           placeholder="Event Category">
+  </div>
+
+
+  <div class="form-group">
+
+    <input [(ngModel)]="startTime"
+           type="text" class="form-control"
+           id="startTime"
+           placeholder="Start Time">
+  </div>
+
+  <div class="form-group">
+
+    <input [(ngModel)]="endTime"
+           type="text" class="form-control"
+           id="End Time"
+           placeholder="End Time">
+  </div>
+
+  <div class="form-group">
+    <select [(ngModel)]="venue">
+      <option *ngFor="let v of venues" [ngValue]="v">{{v.name}}</option>
+    </select>
+  </div>
+
+
+  <a class="btn btn-primary btn-block"
+     (click)="createEvent()">Create</a>
+
+  <a class="btn btn-danger  btn-block"
+     (click)="updateEvent(id)">Update</a>
+</div>
+
+<div class="container">
+  <h4>Event List</h4>
+
+  <li *ngFor="let event of events" class="list-group-item">
+    <div>
+    <span (click)="eventProfile(event.id)" >Title : {{event.title}}</span>
+    </div>
+
+    <a><i (click)="changeEvent(event)" class="fas fa-cog"></i></a>
+    <a><i (click)="deleteEvent(event)" class="fas fa-trash-alt"></i></a>
+    <a><i (click)="createEvent(user.id)" class="fas fa-plus"></i></a>
+  </li>
+</div>

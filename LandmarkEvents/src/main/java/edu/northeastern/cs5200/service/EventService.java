@@ -54,6 +54,7 @@ public class EventService {
 				@PathVariable("userId") int userId,
 				@PathVariable("venueId") int vid) {
 			Host n = hostRepository.findOne(userId);
+						
 			event.setHost(n);
 			Venue v  = venueRepository.findOne(vid);
 			event.setVenue(v);

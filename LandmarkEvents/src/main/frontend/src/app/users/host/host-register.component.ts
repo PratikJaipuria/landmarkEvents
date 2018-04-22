@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from "../user.service";
-import {User} from "../user.model";
-
+import {Host} from "./host.model";
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-host-register',
   templateUrl: './host-register.component.html',
@@ -9,60 +9,63 @@ import {User} from "../user.model";
 })
 export class HostRegisterComponent implements OnInit {
 
-  users:User[] = [];
+  hosts:Host[] = [];
   id : number;
   userName : string;
   firstName : string;
   lastName : string;
   password : string;
+  companyName : string;
 
-  constructor(private userService : UserService) { }
+  constructor(private userService : UserService, private router: Router) { }
 
   ngOnInit() {
-    this.userService.getUsers()
+    this.userService.getUsers("HOST")
       .subscribe(
         (users : any[]) => {
-          this.users = users
+          this.hosts = users
         },
         (error)=> console.log(error)
       );
   }
 
-  createUser(user){
+  createEvent(id){
+    this.router.navigate(['host/' + id +'/event']);
+  };
 
-    let newUser = new User(this.firstName,this.lastName,this.userName,this.password);
-    this.userService.saveUser(newUser).subscribe(
-      () => {
-        this.ngOnInit();
-      },
-      (error)=> console.log(error)
-    );
-
-
-  }
-
-  updateUser(id){
-    let newUser = new User(this.firstName,this.lastName,this.userName,this.password);
-    this.userService.updateUser(newUser,id).subscribe(
+  createHost(){
+    let newHost = new Host(this.firstName,this.lastName,this.userName,this.password,this.companyName);
+    this.userService.saveUser(newHost, "HOST").subscribe(
       () => {
         this.ngOnInit();
       },
       (error)=> console.log(error)
     );
   }
-  changeUser(user){
+
+  updateHost(id){
+    let newHost = new Host(this.firstName,this.lastName,this.userName,this.password, this.companyName);
+    this.userService.updateUser(newHost,id,"HOST").subscribe(
+      (data : any) => {
+        this.ngOnInit();
+      },
+      (error)=> console.log(error)
+    );
+  }
+  changeHost(user){
 
     this.id = user.id;
     this.firstName = user.firstName;
     this.lastName = user.lastName;
     this.userName = user.userName;
     this.password = user.password;
+    this.companyName = user.companyName;
 
   }
 
-  deleteUser(user){
+  deleteHost(user){
 
-    this.userService.deleteUser(user).subscribe(
+    this.userService.deleteUser(user,"HOST").subscribe(
       () => {
         this.ngOnInit();
       },

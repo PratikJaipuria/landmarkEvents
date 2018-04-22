@@ -1,0 +1,46 @@
+<div class="container">
+  <div class=" top-push">
+    <div class="col-lg-12">
+      <div class="input-group">
+        <input
+          [(ngModel)]="location"
+          type="text"
+          class="form-control"
+          width="100%"
+          placeholder="Enter Your Location...">
+          <!--ng-keypress="model.myFunc($event, model.searchText)"-->
+
+        <input
+          [(ngModel)]="category"
+          type="text"
+          class="form-control"
+          width="100%"
+          placeholder="Enter Your Category...">
+        <!--ng-keypress="model.myFunc($event, model.searchText)"-->
+
+        <a class="btn btn-primary btn-block"
+           (click)="search()">Search</a>
+
+
+        <!--<a href="#/listAll/{{model.searchText}}"-->
+           <!--class="bg-color col-lg-1 col-md-1 col-sm-1 col-xs-1">-->
+          <!--<i class="fas fa-search"></i>-->
+        <!--</a>-->
+
+        <!--<a href="#/listAll"-->
+           <!--class="btn btn-block">-->
+          <!--Events List !-->
+        <!--</a>-->
+        <!--{{result}}-->
+        <li *ngFor="let r of result" class="list-group-item">
+
+          <div>
+            <span (click)="getEvent(r.id)">Title : {{r['title']}}</span>
+          </div>
+
+        </li>
+
+      </div>
+    </div>
+  </div>
+</div>
