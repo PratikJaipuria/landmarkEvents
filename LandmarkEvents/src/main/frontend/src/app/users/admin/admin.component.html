@@ -59,27 +59,27 @@
      (click)="createUser()"> Create User</a>
 
   <a class="btn btn-danger  btn-block"
-     (click)="updateUser(id, type)">Update</a>
+     (click)="updateUser(id, tempVal)">Update</a>
 </div>
 
 <div class="container">
-  <h4>HOST User Lists</h4>
+  <h4>PERFORMER User Lists</h4>
   <li *ngFor="let user of performers" class="list-group-item">
     <span (click)="profile(user.id)" >{{user.firstName}} {{user.lastName}}</span>
-    <a><i (click)="changeUser(user, 'performer')" class="fas fa-cog"></i></a>
-    <a><i (click)="deleteUser(user, 'performer')" class="fas fa-trash-alt"></i></a>
+    <a><i (click)="changeUser(user, 'PERFORMER')" class="fas fa-cog"></i></a>
+    <a><i (click)="deleteUser(user, 'PERFORMER')" class="fas fa-trash-alt"></i></a>
   </li>
-  <h4>PERFORMER User Lists</h4>
+  <h4>HOST User Lists</h4>
   <li *ngFor="let user of hosts" class="list-group-item">
     <span (click)="profile(user.id)" >{{user.firstName}} {{user.lastName}}</span>
-    <a><i (click)="changeUser(user, 'host')" class="fas fa-cog"></i></a>
-    <a><i (click)="deleteUser(user, 'host')" class="fas fa-trash-alt"></i></a>
+    <a><i (click)="changeUser(user, 'HOST')" class="fas fa-cog"></i></a>
+    <a><i (click)="deleteUser(user, 'HOST')" class="fas fa-trash-alt"></i></a>
   </li>
   <h4>EVENTEE User Lists</h4>
   <li *ngFor="let user of eventees" class="list-group-item">
     <span (click)="profile(user.id)" >{{user.firstName}} {{user.lastName}}</span>
-    <a><i (click)="changeUser(user, 'eventee')" class="fas fa-cog"></i></a>
-    <a><i (click)="deleteUser(user, 'eventee')" class="fas fa-trash-alt"></i></a>
+    <a><i (click)="changeUser(user, 'EVENTEE')" class="fas fa-cog"></i></a>
+    <a><i (click)="deleteUser(user, 'EVENTEE')" class="fas fa-trash-alt"></i></a>
   </li>
 </div>
 

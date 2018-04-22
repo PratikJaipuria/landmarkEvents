@@ -53,6 +53,7 @@ export class UserService{
       return this.http.put('/api/eventee/' + id , user).map(response => response.json());
   }
   deleteUser(user : User,type : string){
+    console.log(user);
     if(type=="HOST")
       return this.http.delete('/api/host/' + user.id);//.map(response => response.json());
     if(type=="PERFORMER")

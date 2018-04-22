@@ -86,11 +86,11 @@ export class AdminComponent implements OnInit {
     this.lastName = user.lastName;
     this.userName = user.userName;
     this.password = user.password;
-    this.type = type;
+    this.tempVal = type;
 
   }
 
-  deletePerformer(user, type){
+  deleteUser(user, type){
 
     this.userService.deleteUser(user,type).subscribe(
       () => {
