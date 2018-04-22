@@ -32,12 +32,12 @@ public class VenueService {
 		return venueRepository.save(venue);
 	}
 	
-//	/**
-//	 * 
-//	 * @param venue
-//	 * @param eventId
-//	 * @return
-//	 */
+	/**
+	 * 
+	 * @param venue
+	 * @param eventId
+	 * @return
+	 */
 //	@PostMapping("/api/event/{eventId}/venue")
 //	public Venue addVenueToEvent(
 //			@RequestBody Venue venue, @PathVariable("eventId") int eventId) {

@@ -33,7 +33,8 @@ public class Venue {
 	}
 
 	public List<Event> getEvents() {
-		if(this.events == null) return new ArrayList<Event>(); 
+		if(this.events == null) 
+			return new ArrayList<Event>(); 
 		return events;
 	}
 
