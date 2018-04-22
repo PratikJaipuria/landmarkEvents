@@ -14,7 +14,7 @@ import {SearchProfileComponent} from "./search/search-profile/search-profile.com
 
 const appRoutes: Routes = [
   { path : '', component: SearchComponent },
-  { path: 'event/:event' , component: SearchProfileComponent},
+  { path: 'event/:eventId' , component: SearchProfileComponent},
   { path: 'host/:hostId/event/:eventId', component: EventProfileComponent },
   { path: 'host/:hostId/event', component: EventComponent },
   { path: 'host', component: HostRegisterComponent },

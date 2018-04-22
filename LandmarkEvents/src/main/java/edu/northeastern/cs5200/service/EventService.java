@@ -52,6 +52,7 @@ public class EventService {
 		@PostMapping("/api/host/{userId}/event")
 		public Event createEventForHost(@RequestBody Event event, @PathVariable("userId") int userId) {
 			Host n = hostRepository.findOne(userId);
+						
 			event.setHost(n);
 			
 			return eventRepository.save(event);
