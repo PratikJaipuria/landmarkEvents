@@ -1,3 +1,81 @@
-<p>
-  admin works!
-</p>
+<div class="container">
+  <h4>ADMIN PAGE</h4>
+
+
+  <div class="form-group">
+    <input  [(ngModel)]="userName"
+            type="text"
+            class="form-control"
+            placeholder="username"/>
+  </div>
+
+  <div class="form-group">
+    <input [(ngModel)]="password"
+           type="password"
+           class="form-control"
+           placeholder="password"/>
+  </div>
+
+  <div class="form-group">
+
+    <input [(ngModel)]="firstName"
+           type="text"
+           class="form-control"
+           id="first-name"
+           placeholder="First Name">
+  </div>
+
+  <div class="form-group">
+
+    <input [(ngModel)]="lastName"
+           type="text" class="form-control"
+           id="last-name"
+           placeholder="Last Name">
+  </div>
+
+  <div class="form-group">
+
+    <input [(ngModel)]="bio"
+           type="text" class="form-control"
+           id="Bio"
+           placeholder="Bio">
+  </div>
+
+  <tr *ngFor="let entry of entries">
+    <td>{{ entry }}</td>
+    <td>
+      <input type="radio" name="radiogroup"
+             [checked]="idx === 0"
+             [value]="entry">
+    </td>
+  </tr>
+
+  <a class="btn btn-primary btn-block"
+     (click)="createUser(type)"> Create User</a>
+
+  <a class="btn btn-danger  btn-block"
+     (click)="updateUser(id, type)">Update</a>
+</div>
+
+<div class="container">
+  <h4>HOST User Lists</h4>
+  <li *ngFor="let user of performers" class="list-group-item">
+    <span (click)="profile(user.id)" >{{user.firstName}} {{user.lastName}}</span>
+    <a><i (click)="changeUser(user, 'performer')" class="fas fa-cog"></i></a>
+    <a><i (click)="deleteUser(user, 'performer')" class="fas fa-trash-alt"></i></a>
+  </li>
+  <h4>PERFORMER User Lists</h4>
+  <li *ngFor="let user of hosts" class="list-group-item">
+    <span (click)="profile(user.id)" >{{user.firstName}} {{user.lastName}}</span>
+    <a><i (click)="changeUser(user, 'host')" class="fas fa-cog"></i></a>
+    <a><i (click)="deleteUser(user, 'host')" class="fas fa-trash-alt"></i></a>
+  </li>
+  <h4>EVENTEE User Lists</h4>
+  <li *ngFor="let user of eventees" class="list-group-item">
+    <span (click)="profile(user.id)" >{{user.firstName}} {{user.lastName}}</span>
+    <a><i (click)="changeUser(user, 'eventee')" class="fas fa-cog"></i></a>
+    <a><i (click)="deleteUser(user, 'eventee')" class="fas fa-trash-alt"></i></a>
+  </li>
+</div>
+
+
