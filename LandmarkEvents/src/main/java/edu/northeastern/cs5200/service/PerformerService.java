@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import edu.northeastern.cs5200.models.Event;
 import edu.northeastern.cs5200.models.Eventee;
 import edu.northeastern.cs5200.models.Performer;
+import edu.northeastern.cs5200.repositories.EventRepository;
 import edu.northeastern.cs5200.repositories.PerformerRepository;
 
 
@@ -22,6 +24,9 @@ public class PerformerService {
 	
 	@Autowired
 	PerformerRepository performerRepository;
+	
+	@Autowired
+	EventRepository eventRepository;
 	
 	//CREATE A PERFORMER
 	@PostMapping("/api/performer")
@@ -67,6 +72,14 @@ public class PerformerService {
 			@PathVariable("performerId") int pid) {
 		Performer pR = performerRepository.findOne(pid);
 		return pR.getEventees();
+	}
+	
+	//GET PERFORMERS FOR AN EVENT
+	@GetMapping("/api/event/{eventId}/performers")
+	public List<Performer> findPerformersForEvent(
+			@PathVariable("eventId") int eid) {
+		Event event = eventRepository.findOne(eid);
+		return event.getPerformers();
 	}
 	
 	//UPDATE A PERFORMER

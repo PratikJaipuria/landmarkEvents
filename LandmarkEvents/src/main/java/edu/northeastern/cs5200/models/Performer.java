@@ -16,7 +16,7 @@ public class Performer extends User {
 	@JsonIgnore
 	private List<Event> events = null;
 	
-	@ManyToMany(mappedBy="entertainers", cascade=CascadeType.ALL)
+	@ManyToMany(mappedBy="entertainers")
 	@JsonIgnore
 	private List<Eventee> eventees = null;
 
