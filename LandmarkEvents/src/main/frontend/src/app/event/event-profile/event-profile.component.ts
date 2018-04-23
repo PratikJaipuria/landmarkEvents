@@ -41,6 +41,7 @@ export class EventProfileComponent implements OnInit {
           this.url = event.url;
           this.startTime = event.startTime;
           this.endTime = event.endTime
+          
         },
         (error)=> console.log(error)
       );
