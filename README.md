@@ -8,7 +8,7 @@ Team Members: -
 
 This repository is for project work related to Plagiarism Detection System
 
-[Click here]() to navigate to our Application.
+[Click here](http://landmarkevents.us-west-2.elasticbeanstalk.com/) to navigate to our Application.
 
 Youtube Links for the following videos: - 
 
