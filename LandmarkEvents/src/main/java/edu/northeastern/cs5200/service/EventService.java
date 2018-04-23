@@ -105,17 +105,16 @@ public class EventService {
 		 * @param eventId
 		 * @return
 		 */
-		@PutMapping("/api/event/{eventId}/venue")
-		public Event addVenueToEvent(
-				@RequestBody Venue venue, @PathVariable("eventId") int eventId) {
+		@PutMapping("/api/event/{eventId}/venue/{venueId}")
+		public Event addVenueToEvent( 
+				@PathVariable("eventId") int eventId,
+				@PathVariable("venueId") int venueId) {
+			
 			Event e = eventRepository.findOne(eventId);
-			Venue v = venueRepository.findOne(venue.getId());
-			//List<Event> vEvents= v.getEvents();
-			//vEvents.add(e);
-			//v.setEvents(vEvents);
-
+			Venue v = venueRepository.findOne(venueId);
+			
 			e.setVenue(v);
-			//venueRepository.save(v);
+
 			return eventRepository.save(e);
 		}
 		

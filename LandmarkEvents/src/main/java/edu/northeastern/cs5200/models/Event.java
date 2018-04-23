@@ -98,9 +98,8 @@ public class Event {
 
 	public void setVenue(Venue venue) {
 		this.venue = venue;
-		List<Event> currEvents = venue.getEvents();
-		currEvents.add(this);
-		venue.setEvents(currEvents);
+		if(!(venue.getEvents().contains(this)))
+			venue.getEvents().add(this);
 	}
 
 	public String getUrl() {
