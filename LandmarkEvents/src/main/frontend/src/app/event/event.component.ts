@@ -71,9 +71,10 @@ export class EventComponent implements OnInit {
   eventProfile(id:number){
     this.router.navigate(['host/' + this.hostid +'/event/'+ id]);
   }
+
   createEvent(){
     let newEvent = new Event(this.url,this.title,this.cityName,this.category,this.startTime,this.endTime,this.venue);
-    this.eventService.saveEvent(newEvent, this.hostid).subscribe(
+    this.eventService.saveEvent(newEvent, this.venue.id,this.hostid).subscribe(
       () => {
         this.ngOnInit();
       },

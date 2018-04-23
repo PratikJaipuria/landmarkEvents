@@ -34,7 +34,7 @@ export class EventeeComponent implements OnInit {
     this.router.navigate(['eventee/' + id]);
   };
 
-  createEventee(user){
+  createEventee(){
 
     let newEventee = new Eventee(this.firstName,this.lastName,this.userName,this.password);
     this.userService.saveUser(newEventee, "EVENTEE").subscribe(

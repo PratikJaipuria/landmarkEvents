@@ -1,8 +1,49 @@
-# Team landmarkEvents  
+# Landmark Events
 
-## Members
-* Pratik Jaipuria
-* Varun Nandu
-* Bhushan Mohite
+Team Members: -
 
-## [Design Wiki](https://github.com/PratikJaipuria/landmarkEvents/wiki)
+- Varun Nandu
+- Pratik Jaipuria
+- Bhushan Mohite
+
+This repository is for project work related to Plagiarism Detection System
+
+[Click here]() to navigate to our Application.
+
+Youtube Links for the following videos: - 
+
+- [Project Video]()
+
+
+# Running System Locally
+
+## Pre Requistes:
+
+- Need jre and jdk version 8 installed.
+- Need Maven 3.2 + installed. 
+- Make sure you have latest version of Eclipse installed or STS installed.
+- If using Eclipse please install spring tool suite dependencies from market place.
+
+## Run Locally
+
+- go to terminal or command line and type the following commands:
+```sh
+$ git clone https://github.com/PratikJaipuria/landmarkEvents.git
+```
+- If you want to run from ide Open Eclipse or STS depending on whichever one you are using.
+- Go to **File** and then select **Open Projects From File Systems**
+- Click on **directory**
+- navigate to recently cloned repository. It will be named **landmarkEvents** go inside and select **LandmarkEvents**
+- Click on Finish
+- Once the project can be seen in your workspace, right click on project and do **Run as** -> **Spring Boot App**
+
+
+# Some Pre Defined Data
+
+As mentioned in google doc
+
+# Testing Doc
+
+Testing document is mentioned above as test.pdf
+
+

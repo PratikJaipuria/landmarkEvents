@@ -18,5 +18,9 @@ export class SearchService {
    return this.http.get('api/host/event?cityName='+location+'&category='+category).map(response => response.json());
   }
 
+  searchEventByID(id:number){
+    return this.http.get('http://api.eventful.com/json/events/get?app_key=4WfzV49BJWfGstmT&id='+id).map(response => response.json());
+  }
+
 
 }

@@ -142,9 +142,9 @@ public class EventeeService {
 	}
 	
 	
-	//FIND ALL Performers BY Eventee ID
+	//FIND ALL Performers followed BY Eventee ID
 	@GetMapping("/api/eventee/{eventeeId}/performer")
-	public List<Performer> findPerformerById(
+	public List<Performer> findPerformerFollowedById(
 			@PathVariable("eventeeId") int eid) {
 		Eventee eventee = eventeeRepository.findOne(eid);
 		List<Performer> entertainers = eventee.getEntertainers();

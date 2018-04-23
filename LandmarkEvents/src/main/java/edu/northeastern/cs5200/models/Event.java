@@ -14,11 +14,11 @@ public class Event {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JsonIgnore
 	private Host host = null;
 	
-	@OneToMany(cascade=CascadeType.REMOVE)
+	@OneToMany(cascade=CascadeType.ALL)
 	@JsonIgnore
 	private List<Ticket> ticket = null;
 	
@@ -98,9 +98,8 @@ public class Event {
 
 	public void setVenue(Venue venue) {
 		this.venue = venue;
-		List<Event> currEvents = venue.getEvents();
-		currEvents.add(this);
-		venue.setEvents(currEvents);
+		if(!(venue.getEvents().contains(this)))
+			venue.getEvents().add(this);
 	}
 
 	public String getUrl() {

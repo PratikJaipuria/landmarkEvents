@@ -40,18 +40,10 @@ export class SearchComponent implements OnInit {
         (error)=> console.log(error)
       );
 
-    // this.searchService.searchQuery(this.category,this.location)
-    //   .subscribe(
-    //     (res : any[]) => {
-    //       console.log(res);
-    //       this.result.push(res['events']['event'])
-    //     },
-    //     (error)=> console.log(error)
-    //   );
   }
 
-  getEvent(event:Event){
-    this.router.navigate(['event/' + event]);
+  getEvent(eventId:string){
+    this.router.navigate(['event/' + eventId]);
   }
 
 

@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Event} from "../../event/event.model";
 import {Venue} from "../../venue/venue.model";
+import {SearchService} from "../search.service";
+import {EventService} from "../../event/event.service";
+import {isNumber} from "util";
 
 @Component({
   selector: 'app-search-profile',
@@ -10,7 +13,7 @@ import {Venue} from "../../venue/venue.model";
 })
 export class SearchProfileComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute,private router: Router) {
+  constructor(private eventService : EventService,private route: ActivatedRoute,private router: Router, private searchService : SearchService) {
   }
 
   eventId : number;
@@ -30,15 +33,64 @@ export class SearchProfileComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.forEach((params: Params) => {
-      this.event = params['event'];
+      this.eventId = params['eventId'];
     });
-    console.log(this.event);
-    this.title = this.event.title;
-    this.category = this.event.category;
-    this.cityName = this.event.cityName;
-    this.url = this.event.url;
-    this.startTime = this.event.startTime;
-    this.endTime = this.event.endTime;
+    console.log(this.eventId);
+
+    this.eventService.getEvent(this.eventId).subscribe(
+      (res : Event)=>{
+        console.log(res);
+              this.title =res[0].title;
+              this.cityName = res[0].cityName;
+              this.url = res[0].url;
+              this.startTime = res[0].startTime;
+              this.endTime = res[0].endTime;
+      },
+      () =>{
+        this.searchService.searchEventByID(this.eventId)
+                .subscribe(
+                  (res : any) => {
+                    console.log(res);
+                    this.title =res.title;
+                    this.cityName = res.city;
+                    this.url = res.url;
+                    this.startTime = res.start_time;
+                    this.endTime = res.end_time;
+
+                  },
+                  (error)=> console.log(error)
+                )}
+      // (error: any)=> {console.log(error)}
+    );
+    // this.eventService.getEvent(this.eventId).subscribe(
+    //   (res : Event) => {
+    //
+    //     console.log("Value   --> ",res);
+    //     if(res===null){
+    //
+    //       this.title =res[0].title;
+    //       this.cityName = res[0].cityName;
+    //       this.url = res[0].url;
+    //       this.startTime = res[0].startTime;
+    //       this.endTime = res[0].endTime;
+    //     }else{
+    //       this.searchService.searchEventByID(this.eventId)
+    //         .subscribe(
+    //           (res : any) => {
+    //             console.log(res);
+    //             this.title =res.title;
+    //             this.cityName = res.city;
+    //             this.url = res.url;
+    //             this.startTime = res.start_time;
+    //             this.endTime = res.end_time;
+    //
+    //           },
+    //           (error)=> console.log(error)
+    //         )
+    //     }
+    //
+    //   }
+    // );
 
   }
 }

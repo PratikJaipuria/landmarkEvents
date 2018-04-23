@@ -24,6 +24,7 @@ import { PerformerProfileComponent } from './users/performer/performer-profile/p
 import { HostProfileComponent } from './users/host/host-profile/host-profile.component';
 import { EventProfileComponent } from './event/event-profile/event-profile.component';
 import { SearchProfileComponent } from './search/search-profile/search-profile.component';
+import { AdminComponent } from './users/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { SearchProfileComponent } from './search/search-profile/search-profile.c
     HostProfileComponent,
     EventProfileComponent,
     SearchProfileComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,
