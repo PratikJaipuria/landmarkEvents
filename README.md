@@ -36,6 +36,12 @@ $ git clone https://github.com/PratikJaipuria/landmarkEvents.git
 - navigate to recently cloned repository. It will be named **landmarkEvents** go inside and select **LandmarkEvents**
 - Click on Finish
 - Once the project can be seen in your workspace, right click on project and do **Run as** -> **Spring Boot App**
+- Navigate to localhost:8080 to view the application
+
+# Note : 
+
+	We are facing 'Access-Control-Allow-Origin' error in the browser, so its essential to Enable cross-origin resource sharing to search for API results.
+	This can be done by using CORS chrome plugin.
 
 
 # Some Pre Defined Data
