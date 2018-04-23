@@ -10,13 +10,13 @@ export class EventService {
   constructor(private http: Http) {
   }
 
-  saveEvent(event : Event, hostId : number) {
-    return this.http.post('/api/host/'+ hostId + '/event',event).map(response => response.json());
+  saveEvent(event : Event, venuId: number , hostId : number) {
+    return this.http.post('/api/host/'+ hostId +'/venue/'+ venuId + '/event',event).map(response => response.json());
 
   }
 
   setVenueforEvent(eventId:number, venue : Venue){
-    console.log("Update Event", eventId , venue);
+
     return this.http.put('/api/event/'+ eventId + '/venue',venue).map(response => response.json());
   }
 

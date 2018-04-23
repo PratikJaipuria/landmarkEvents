@@ -74,15 +74,10 @@ export class EventComponent implements OnInit {
 
   createEvent(){
     let newEvent = new Event(this.url,this.title,this.cityName,this.category,this.startTime,this.endTime,this.venue);
-    this.eventService.saveEvent(newEvent, this.hostid).subscribe(
-      (eventResponse : Event) => {
-              console.log("Create Event", eventResponse);
-              this.eventService.setVenueforEvent(eventResponse.id, this.venue).subscribe(
-                () => {
-                    this.ngOnInit();
-                    },
-          (error)=> console.log(error)
-              )},
+    this.eventService.saveEvent(newEvent, this.venue.id,this.hostid).subscribe(
+      () => {
+        this.ngOnInit();
+      },
       (error)=> console.log(error)
     );
   }
